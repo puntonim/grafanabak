@@ -10,10 +10,10 @@
     "canStar": true, 
     "expires": "0001-01-01T00:00:00Z", 
     "isFolder": false, 
-    "updated": "2018-11-22T21:06:26Z", 
+    "updated": "2018-11-23T12:22:43Z", 
     "slug": "orcid-push-infra", 
     "folderTitle": "ORCID", 
-    "version": 11, 
+    "version": 16, 
     "createdBy": "admin", 
     "updatedBy": "admin", 
     "folderId": 8, 
@@ -41,7 +41,7 @@
             "value": "$__all", 
             "tags": []
           }, 
-          "datasource": "inspirelogs-prod", 
+          "datasource": "inspirelogs", 
           "type": "query", 
           "query": "{\"find\": \"terms\", \"field\": \"host.keyword\"}", 
           "useTags": false, 
@@ -56,7 +56,7 @@
       "orcid", 
       "infra"
     ], 
-    "iteration": 1542920775814, 
+    "iteration": 1542975469442, 
     "time": {
       "to": "now", 
       "from": "now-2d"
@@ -102,7 +102,7 @@
       ]
     }, 
     "title": "ORCID-push infra", 
-    "version": 11, 
+    "version": 16, 
     "graphTooltip": 0, 
     "timezone": "", 
     "schemaVersion": 16, 
@@ -241,7 +241,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspiremonitoring-prod", 
+        "datasource": "inspiremonitoring", 
         "pointradius": 5
       }, 
       {
@@ -361,7 +361,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspiremonitoring-prod", 
+        "datasource": "inspiremonitoring", 
         "pointradius": 5
       }, 
       {
@@ -551,7 +551,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspirelogs-prod", 
+        "datasource": "inspirelogs", 
         "pointradius": 5
       }
     ], 

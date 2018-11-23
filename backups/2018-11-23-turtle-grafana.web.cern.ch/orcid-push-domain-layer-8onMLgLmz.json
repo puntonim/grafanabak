@@ -10,10 +10,10 @@
     "canStar": true, 
     "expires": "0001-01-01T00:00:00Z", 
     "isFolder": false, 
-    "updated": "2018-11-22T21:06:06Z", 
+    "updated": "2018-11-23T12:17:44Z", 
     "slug": "orcid-push-domain-layer", 
     "folderTitle": "ORCID", 
-    "version": 25, 
+    "version": 27, 
     "createdBy": "admin", 
     "updatedBy": "admin", 
     "folderId": 8, 
@@ -73,7 +73,7 @@
         "1d"
       ]
     }, 
-    "version": 25, 
+    "version": 27, 
     "time": {
       "to": "now", 
       "from": "now-6h"
@@ -241,7 +241,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspireappmetrics-prod", 
+        "datasource": "inspireappmetrics", 
         "pointradius": 5, 
         "decimals": 0
       }, 
@@ -384,7 +384,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspireappmetrics-prod", 
+        "datasource": "inspireappmetrics", 
         "pointradius": 5
       }, 
       {
@@ -547,7 +547,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspireappmetrics-prod", 
+        "datasource": "inspireappmetrics", 
         "pointradius": 5, 
         "decimals": 0
       }, 
@@ -690,7 +690,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspireappmetrics-prod", 
+        "datasource": "inspireappmetrics", 
         "pointradius": 5
       }, 
       {
@@ -853,7 +853,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspireappmetrics-prod", 
+        "datasource": "inspireappmetrics", 
         "pointradius": 5, 
         "decimals": 0
       }, 
@@ -996,7 +996,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspireappmetrics-prod", 
+        "datasource": "inspireappmetrics", 
         "pointradius": 5
       }, 
       {
@@ -1166,7 +1166,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspireappmetrics-prod", 
+        "datasource": "inspireappmetrics", 
         "pointradius": 5, 
         "decimals": 0
       }, 
@@ -1314,7 +1314,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspireappmetrics-prod", 
+        "datasource": "inspireappmetrics", 
         "pointradius": 5
       }, 
       {
@@ -1489,7 +1489,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspireappmetrics-prod", 
+        "datasource": "inspireappmetrics", 
         "pointradius": 5, 
         "decimals": 0
       }, 
@@ -1642,7 +1642,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspireappmetrics-prod", 
+        "datasource": "inspireappmetrics", 
         "pointradius": 5
       }, 
       {
@@ -1807,7 +1807,7 @@
         }, 
         "lines": true, 
         "points": false, 
-        "datasource": "inspirelogs-prod", 
+        "datasource": "inspirelogs", 
         "pointradius": 5, 
         "decimals": 0
       }

@@ -2,7 +2,7 @@ import os
 
 import click
 
-from domain.models import Backup
+from domain.models import Backup, Restore
 
 
 @click.group()
@@ -20,9 +20,11 @@ def backup(url):
 
 @click.command()
 @click.argument('url')
-def restore(url):
-    click.echo('Url=' + url)
-    click.echo('Not implemented yet')
+@click.argument('json_file', type=click.File('r'))
+def restore(url, json_file):
+    api_key = get_api_key()
+    restore = Restore(api_key, url, json_file)
+    restore.restore_dashboard()
 
 
 def get_api_key():
@@ -38,4 +40,5 @@ cli.add_command(restore)
 
 
 if __name__ == '__main__':
+    click.echo('** GRAFANABAK **')
     cli()

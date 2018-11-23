@@ -19,7 +19,6 @@ class Backup(object):
         self.session.headers.update({'Authorization': 'Bearer {}'.format(api_key)})
 
     def bak_all_dashboards(self):
-        click.echo('Backing up all dashboard at ' + self.base_url)
         dashboards = self._search_all_dashboards()
         for dashboard in dashboards:
             dashboard_source = self._get_dashboard(dashboard['uid'])
@@ -38,9 +37,10 @@ class Backup(object):
         return response.json()
 
     def _write_dashboard_to_file(self, dashboard_source):
-        title = dashboard_source['dashboard']['title']
-        title = slugify(title)
+        title_orig = dashboard_source['dashboard']['title']
+        title = slugify(title_orig)
         uid = dashboard_source['dashboard']['uid']
+        click.echo('Backing up "{}" - uid={}'.format(title_orig, uid))
 
         file_name = '{}-{}.json'.format(title, uid)
         today = datetime.date.today()
@@ -53,3 +53,17 @@ class Backup(object):
 
         with open(file_path, 'w') as fout:
             fout.write(json.dumps(dashboard_source, indent=2))
+
+
+class Restore(object):
+    def __init__(self, api_key, base_url, json_file):
+        self.base_url = base_url
+        self.json_file = json_file
+
+        self.session = requests.Session()
+        self.session.headers.update({'Authorization': 'Bearer {}'.format(api_key)})
+
+    def restore_dashboard(self):
+        click.echo('Not implemented yet!')
+        # data = self.json_file.read()
+        # self.json_file.close()
