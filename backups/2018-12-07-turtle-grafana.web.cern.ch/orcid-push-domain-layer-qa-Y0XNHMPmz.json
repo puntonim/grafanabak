@@ -1,0 +1,2125 @@
+{
+  "meta": {
+    "hasAcl": false, 
+    "provisioned": false, 
+    "canSave": true, 
+    "canAdmin": true, 
+    "folderUrl": "/dashboards/f/4l_WczYmk/orcid", 
+    "created": "2018-12-06T10:11:33Z", 
+    "url": "/d/Y0XNHMPmz/orcid-push-domain-layer-qa", 
+    "canStar": true, 
+    "expires": "0001-01-01T00:00:00Z", 
+    "isFolder": false, 
+    "updated": "2018-12-07T09:41:06Z", 
+    "slug": "orcid-push-domain-layer-qa", 
+    "folderTitle": "ORCID", 
+    "version": 9, 
+    "createdBy": "inspire", 
+    "updatedBy": "inspire", 
+    "folderId": 8, 
+    "type": "db", 
+    "canEdit": true
+  }, 
+  "dashboard": {
+    "style": "dark", 
+    "templating": {
+      "list": []
+    }, 
+    "links": [], 
+    "tags": [
+      "orcid", 
+      "domain", 
+      "qa"
+    ], 
+    "graphTooltip": 1, 
+    "title": "ORCID-push domain layer QA", 
+    "editable": true, 
+    "refresh": false, 
+    "annotations": {
+      "list": [
+        {
+          "enable": true, 
+          "hide": true, 
+          "name": "Annotations & Alerts", 
+          "builtIn": 1, 
+          "datasource": "-- Grafana --", 
+          "type": "dashboard", 
+          "iconColor": "rgba(0, 211, 255, 1)"
+        }
+      ]
+    }, 
+    "gnetId": null, 
+    "timepicker": {
+      "time_options": [
+        "5m", 
+        "15m", 
+        "1h", 
+        "6h", 
+        "12h", 
+        "24h", 
+        "2d", 
+        "7d", 
+        "30d"
+      ], 
+      "refresh_intervals": [
+        "5s", 
+        "10s", 
+        "30s", 
+        "1m", 
+        "5m", 
+        "15m", 
+        "30m", 
+        "1h", 
+        "2h", 
+        "1d"
+      ]
+    }, 
+    "version": 9, 
+    "time": {
+      "to": "now", 
+      "from": "now-6h"
+    }, 
+    "timezone": "", 
+    "schemaVersion": 16, 
+    "panels": [
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null as zero", 
+        "renderer": "flot", 
+        "gridPos": {
+          "y": 0, 
+          "h": 9, 
+          "w": 12, 
+          "x": 0
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "id": 4, 
+        "fill": 2, 
+        "title": "OrcidPusher.push | Frequency", 
+        "tooltip": {
+          "sort": 2, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "total", 
+          "rightSide": false, 
+          "total": true, 
+          "min": false, 
+          "max": true, 
+          "show": true, 
+          "current": true, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": false, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "name", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "4", 
+                "fake": true
+              }, 
+              {
+                "field": "exc_fqn", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "size": "10", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "missing": "-"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "10s", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "hide": false, 
+            "metrics": [
+              {
+                "field": "value", 
+                "meta": {}, 
+                "type": "count", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "{{name}} | exception {{exc_fqn}}", 
+            "timeField": "timestamp", 
+            "query": "name:inspirehep.modules.orcid.domain_models.OrcidPusher.push", 
+            "refId": "A"
+          }
+        ], 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "#/10s", 
+            "show": true, 
+            "decimals": 0
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#bf1b00", 
+            "alias": "/.*/"
+          }, 
+          {
+            "color": "#629e51", 
+            "alias": "/.*exception -/", 
+            "zindex": -3
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "200": "#7eb26d", 
+          "Exception -": "#629e51", 
+          "HTTP STATUS 400 - ERROR 9042": "#f2c96d", 
+          "HTTP STATUS 404 - ERROR 9016": "#f2c96d", 
+          "HTTP STATUS 403 - ERROR 9038": "#f2c96d", 
+          "HTTP STATUS 409 - ERROR 9021": "#f2c96d", 
+          "HTTP STATUS 201 - ERROR 0": "#b7dbab", 
+          "HTTP STATUS 400 - ERROR 0": "#f2c96d", 
+          "Exception inspirehep.modules.orcid.exceptions.InputDataInvalidException": "#aea2e0", 
+          "HTTP STATUS 400 - ERROR 9023": "#f2c96d", 
+          "HTTP STATUS 200 - ERROR 0": "#7eb26d", 
+          "HTTP STATUS 401 - ERROR 0": "#f2c96d", 
+          "HTTP STATUS 400 - ERROR 9001": "#f2c96d", 
+          "HTTP STATUS 401 - ERROR 9017": "#f2c96d", 
+          "HTTP STATUS 500 - ERROR 9008": "#bf1b00"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspireappmetrics-qa", 
+        "pointradius": 5, 
+        "decimals": 0
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null", 
+        "renderer": "flot", 
+        "id": 6, 
+        "gridPos": {
+          "y": 0, 
+          "h": 9, 
+          "w": 12, 
+          "x": 12
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "name", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "metrics": [
+              {
+                "field": "value", 
+                "meta": {}, 
+                "type": "avg", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "", 
+            "timeField": "timestamp", 
+            "query": "name:inspirehep.modules.orcid.domain_models.OrcidPusher.push", 
+            "refId": "A"
+          }
+        ], 
+        "fill": 2, 
+        "title": "OrcidPusher.push | Duration", 
+        "tooltip": {
+          "sort": 2, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "avg", 
+          "total": false, 
+          "min": true, 
+          "max": true, 
+          "show": true, 
+          "current": false, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": true, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "msec", 
+            "show": true, 
+            "decimals": null
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#64b0c8", 
+            "alias": "//"
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "200": "#7eb26d", 
+          "HTTP STATUS 400 - ERROR 9042": "#f2c96d", 
+          "HTTP STATUS 404 - ERROR 9016": "#f2c96d", 
+          "HTTP STATUS 403 - ERROR 9038": "#f2c96d", 
+          "HTTP STATUS 409 - ERROR 9021": "#f2c96d", 
+          "HTTP STATUS 201 - ERROR 0": "#629e51", 
+          "HTTP STATUS 400 - ERROR 0": "#f2c96d", 
+          "Average value": "#e0f9d7", 
+          "HTTP STATUS 400 - ERROR 9023": "#f2c96d", 
+          "HTTP STATUS 200 - ERROR 0": "#629e51", 
+          "HTTP STATUS 401 - ERROR 0": "#f2c96d", 
+          "HTTP STATUS 400 - ERROR 9001": "#f2c96d", 
+          "HTTP STATUS 401 - ERROR 9017": "#f2c96d", 
+          "HTTP STATUS 500 - ERROR 9008": "#bf1b00"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspireappmetrics-qa", 
+        "pointradius": 5
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null as zero", 
+        "renderer": "flot", 
+        "gridPos": {
+          "y": 9, 
+          "h": 9, 
+          "w": 12, 
+          "x": 0
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "id": 7, 
+        "fill": 2, 
+        "title": "OrcidPusher._post_or_put_work | Frequency", 
+        "tooltip": {
+          "sort": 2, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "total", 
+          "rightSide": false, 
+          "total": true, 
+          "min": false, 
+          "max": true, 
+          "show": true, 
+          "current": true, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": false, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "name", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "4", 
+                "fake": true
+              }, 
+              {
+                "field": "exc_fqn", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "size": "10", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "missing": "-"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "10s", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "hide": false, 
+            "metrics": [
+              {
+                "field": "value", 
+                "meta": {}, 
+                "type": "count", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "{{name}} | exception {{exc_fqn}}", 
+            "timeField": "timestamp", 
+            "query": "name:inspirehep.modules.orcid.domain_models.OrcidPusher._post_or_put_work", 
+            "refId": "A"
+          }
+        ], 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "#/10s", 
+            "show": true, 
+            "decimals": 0
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#bf1b00", 
+            "alias": "/.*/"
+          }, 
+          {
+            "color": "#629e51", 
+            "alias": "/.*exception -/", 
+            "zindex": -3
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "200": "#7eb26d", 
+          "Exception -": "#629e51", 
+          "HTTP STATUS 400 - ERROR 9042": "#f2c96d", 
+          "HTTP STATUS 404 - ERROR 9016": "#f2c96d", 
+          "HTTP STATUS 403 - ERROR 9038": "#f2c96d", 
+          "HTTP STATUS 409 - ERROR 9021": "#f2c96d", 
+          "HTTP STATUS 201 - ERROR 0": "#b7dbab", 
+          "HTTP STATUS 400 - ERROR 0": "#f2c96d", 
+          "Exception inspirehep.modules.orcid.exceptions.InputDataInvalidException": "#aea2e0", 
+          "HTTP STATUS 400 - ERROR 9023": "#f2c96d", 
+          "HTTP STATUS 200 - ERROR 0": "#7eb26d", 
+          "HTTP STATUS 401 - ERROR 0": "#f2c96d", 
+          "HTTP STATUS 400 - ERROR 9001": "#f2c96d", 
+          "HTTP STATUS 401 - ERROR 9017": "#f2c96d", 
+          "HTTP STATUS 500 - ERROR 9008": "#bf1b00"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspireappmetrics-qa", 
+        "pointradius": 5, 
+        "decimals": 0
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null", 
+        "renderer": "flot", 
+        "id": 8, 
+        "gridPos": {
+          "y": 9, 
+          "h": 9, 
+          "w": 12, 
+          "x": 12
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "name", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "metrics": [
+              {
+                "field": "value", 
+                "meta": {}, 
+                "type": "avg", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "", 
+            "timeField": "timestamp", 
+            "query": "name:inspirehep.modules.orcid.domain_models.OrcidPusher._post_or_put_work", 
+            "refId": "A"
+          }
+        ], 
+        "fill": 2, 
+        "title": "OrcidPusher._post_or_put_work | Duration", 
+        "tooltip": {
+          "sort": 2, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "avg", 
+          "total": false, 
+          "min": true, 
+          "max": true, 
+          "show": true, 
+          "current": false, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": true, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "msec", 
+            "show": true, 
+            "decimals": null
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#64b0c8", 
+            "alias": "//"
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "200": "#7eb26d", 
+          "HTTP STATUS 400 - ERROR 9042": "#f2c96d", 
+          "HTTP STATUS 404 - ERROR 9016": "#f2c96d", 
+          "HTTP STATUS 403 - ERROR 9038": "#f2c96d", 
+          "HTTP STATUS 409 - ERROR 9021": "#f2c96d", 
+          "HTTP STATUS 201 - ERROR 0": "#629e51", 
+          "HTTP STATUS 400 - ERROR 0": "#f2c96d", 
+          "Average value": "#e0f9d7", 
+          "HTTP STATUS 400 - ERROR 9023": "#f2c96d", 
+          "HTTP STATUS 200 - ERROR 0": "#629e51", 
+          "HTTP STATUS 401 - ERROR 0": "#f2c96d", 
+          "HTTP STATUS 400 - ERROR 9001": "#f2c96d", 
+          "HTTP STATUS 401 - ERROR 9017": "#f2c96d", 
+          "HTTP STATUS 500 - ERROR 9008": "#bf1b00"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspireappmetrics-qa", 
+        "pointradius": 5
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null as zero", 
+        "renderer": "flot", 
+        "gridPos": {
+          "y": 18, 
+          "h": 9, 
+          "w": 12, 
+          "x": 0
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "id": 9, 
+        "fill": 2, 
+        "title": "OrcidPusher._cache_all_author_putcodes | Frequency", 
+        "tooltip": {
+          "sort": 2, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "total", 
+          "rightSide": false, 
+          "total": true, 
+          "min": false, 
+          "max": true, 
+          "show": true, 
+          "current": true, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": false, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "name", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "4", 
+                "fake": true
+              }, 
+              {
+                "field": "exc_fqn", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "size": "10", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "missing": "-"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "10s", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "hide": false, 
+            "metrics": [
+              {
+                "field": "value", 
+                "meta": {}, 
+                "type": "count", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "{{name}} | exception {{exc_fqn}}", 
+            "timeField": "timestamp", 
+            "query": "name:inspirehep.modules.orcid.domain_models.OrcidPusher._cache_all_author_putcodes", 
+            "refId": "A"
+          }
+        ], 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "#/10s", 
+            "show": true, 
+            "decimals": 0
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#bf1b00", 
+            "alias": "/.*/"
+          }, 
+          {
+            "color": "#629e51", 
+            "alias": "/.*exception -/", 
+            "zindex": -3
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "200": "#7eb26d", 
+          "Exception -": "#629e51", 
+          "HTTP STATUS 400 - ERROR 9042": "#f2c96d", 
+          "HTTP STATUS 404 - ERROR 9016": "#f2c96d", 
+          "HTTP STATUS 403 - ERROR 9038": "#f2c96d", 
+          "HTTP STATUS 409 - ERROR 9021": "#f2c96d", 
+          "HTTP STATUS 201 - ERROR 0": "#b7dbab", 
+          "HTTP STATUS 400 - ERROR 0": "#f2c96d", 
+          "Exception inspirehep.modules.orcid.exceptions.InputDataInvalidException": "#aea2e0", 
+          "HTTP STATUS 400 - ERROR 9023": "#f2c96d", 
+          "HTTP STATUS 200 - ERROR 0": "#7eb26d", 
+          "HTTP STATUS 401 - ERROR 0": "#f2c96d", 
+          "HTTP STATUS 400 - ERROR 9001": "#f2c96d", 
+          "HTTP STATUS 401 - ERROR 9017": "#f2c96d", 
+          "HTTP STATUS 500 - ERROR 9008": "#bf1b00"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspireappmetrics-qa", 
+        "pointradius": 5, 
+        "decimals": 0
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null", 
+        "renderer": "flot", 
+        "id": 10, 
+        "gridPos": {
+          "y": 18, 
+          "h": 9, 
+          "w": 12, 
+          "x": 12
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "name", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "metrics": [
+              {
+                "field": "value", 
+                "meta": {}, 
+                "type": "avg", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "", 
+            "timeField": "timestamp", 
+            "query": "name:inspirehep.modules.orcid.domain_models.OrcidPusher._cache_all_author_putcodes", 
+            "refId": "A"
+          }
+        ], 
+        "fill": 2, 
+        "title": "OrcidPusher._cache_all_author_putcodes | Duration", 
+        "tooltip": {
+          "sort": 2, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "avg", 
+          "total": false, 
+          "min": true, 
+          "max": true, 
+          "show": true, 
+          "current": false, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": true, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "msec", 
+            "show": true, 
+            "decimals": null
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#64b0c8", 
+            "alias": "//"
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "200": "#7eb26d", 
+          "HTTP STATUS 400 - ERROR 9042": "#f2c96d", 
+          "HTTP STATUS 404 - ERROR 9016": "#f2c96d", 
+          "HTTP STATUS 403 - ERROR 9038": "#f2c96d", 
+          "HTTP STATUS 409 - ERROR 9021": "#f2c96d", 
+          "HTTP STATUS 201 - ERROR 0": "#629e51", 
+          "HTTP STATUS 400 - ERROR 0": "#f2c96d", 
+          "Average value": "#e0f9d7", 
+          "HTTP STATUS 400 - ERROR 9023": "#f2c96d", 
+          "HTTP STATUS 200 - ERROR 0": "#629e51", 
+          "HTTP STATUS 401 - ERROR 0": "#f2c96d", 
+          "HTTP STATUS 400 - ERROR 9001": "#f2c96d", 
+          "HTTP STATUS 401 - ERROR 9017": "#f2c96d", 
+          "HTTP STATUS 500 - ERROR 9008": "#bf1b00"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspireappmetrics-qa", 
+        "pointradius": 5
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null as zero", 
+        "renderer": "flot", 
+        "gridPos": {
+          "y": 27, 
+          "h": 9, 
+          "w": 12, 
+          "x": 0
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "id": 16, 
+        "fill": 2, 
+        "title": "OrcidPusher._delete_work | Frequency", 
+        "tooltip": {
+          "sort": 2, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "total", 
+          "rightSide": false, 
+          "total": true, 
+          "min": false, 
+          "max": true, 
+          "show": true, 
+          "current": true, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": false, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "name", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "4", 
+                "fake": true
+              }, 
+              {
+                "field": "exc_fqn", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "size": "10", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "missing": "-"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "10s", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "hide": false, 
+            "metrics": [
+              {
+                "field": "value", 
+                "meta": {}, 
+                "type": "count", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "{{name}} | exception {{exc_fqn}}", 
+            "timeField": "timestamp", 
+            "query": "name:inspirehep.modules.orcid.domain_models.OrcidPusher._delete_work", 
+            "refId": "A"
+          }
+        ], 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "#/10s", 
+            "show": true, 
+            "decimals": 0
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#bf1b00", 
+            "alias": "/.*/"
+          }, 
+          {
+            "color": "#629e51", 
+            "alias": "/.*exception -/", 
+            "zindex": -3
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "200": "#7eb26d", 
+          "Exception -": "#629e51", 
+          "HTTP STATUS 400 - ERROR 9042": "#f2c96d", 
+          "HTTP STATUS 404 - ERROR 9016": "#f2c96d", 
+          "HTTP STATUS 403 - ERROR 9038": "#f2c96d", 
+          "HTTP STATUS 409 - ERROR 9021": "#f2c96d", 
+          "HTTP STATUS 201 - ERROR 0": "#b7dbab", 
+          "HTTP STATUS 400 - ERROR 0": "#f2c96d", 
+          "Exception inspirehep.modules.orcid.exceptions.InputDataInvalidException": "#aea2e0", 
+          "HTTP STATUS 400 - ERROR 9023": "#f2c96d", 
+          "HTTP STATUS 200 - ERROR 0": "#7eb26d", 
+          "HTTP STATUS 401 - ERROR 0": "#f2c96d", 
+          "HTTP STATUS 400 - ERROR 9001": "#f2c96d", 
+          "HTTP STATUS 401 - ERROR 9017": "#f2c96d", 
+          "HTTP STATUS 500 - ERROR 9008": "#bf1b00"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspireappmetrics-qa", 
+        "pointradius": 5, 
+        "decimals": 0
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null", 
+        "renderer": "flot", 
+        "id": 17, 
+        "gridPos": {
+          "y": 27, 
+          "h": 9, 
+          "w": 12, 
+          "x": 12
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "name", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "metrics": [
+              {
+                "field": "value", 
+                "meta": {}, 
+                "type": "avg", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "", 
+            "timeField": "timestamp", 
+            "query": "name:inspirehep.modules.orcid.domain_models.OrcidPusher._delete_work", 
+            "refId": "A"
+          }
+        ], 
+        "fill": 2, 
+        "title": "OrcidPusher._delete_work | Duration", 
+        "tooltip": {
+          "sort": 2, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "avg", 
+          "total": false, 
+          "min": true, 
+          "max": true, 
+          "show": true, 
+          "current": false, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": true, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "msec", 
+            "show": true, 
+            "decimals": null
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#64b0c8", 
+            "alias": "//"
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "200": "#7eb26d", 
+          "HTTP STATUS 400 - ERROR 9042": "#f2c96d", 
+          "HTTP STATUS 404 - ERROR 9016": "#f2c96d", 
+          "HTTP STATUS 403 - ERROR 9038": "#f2c96d", 
+          "HTTP STATUS 409 - ERROR 9021": "#f2c96d", 
+          "HTTP STATUS 201 - ERROR 0": "#629e51", 
+          "HTTP STATUS 400 - ERROR 0": "#f2c96d", 
+          "Average value": "#e0f9d7", 
+          "HTTP STATUS 400 - ERROR 9023": "#f2c96d", 
+          "HTTP STATUS 200 - ERROR 0": "#629e51", 
+          "HTTP STATUS 401 - ERROR 0": "#f2c96d", 
+          "HTTP STATUS 400 - ERROR 9001": "#f2c96d", 
+          "HTTP STATUS 401 - ERROR 9017": "#f2c96d", 
+          "HTTP STATUS 500 - ERROR 9008": "#bf1b00"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspireappmetrics-qa", 
+        "pointradius": 5
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null as zero", 
+        "renderer": "flot", 
+        "gridPos": {
+          "y": 36, 
+          "h": 9, 
+          "w": 12, 
+          "x": 0
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "id": 13, 
+        "fill": 2, 
+        "title": "OrcidConverter | Frequency", 
+        "tooltip": {
+          "sort": 2, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "total", 
+          "rightSide": false, 
+          "total": true, 
+          "min": false, 
+          "max": true, 
+          "show": true, 
+          "current": true, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": false, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "name", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "4", 
+                "fake": true
+              }, 
+              {
+                "field": "exc_fqn", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "size": "10", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "missing": "-"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "10s", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "hide": false, 
+            "metrics": [
+              {
+                "field": "value", 
+                "meta": {}, 
+                "type": "count", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "{{name}} | exception: {{exc_fqn}}", 
+            "timeField": "timestamp", 
+            "query": "name:inspirehep.modules.orcid.converter.*", 
+            "refId": "A"
+          }
+        ], 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "#/10s", 
+            "show": true, 
+            "decimals": 0
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#bf1b00", 
+            "alias": "/.*/"
+          }, 
+          {
+            "color": "#64b0c8", 
+            "alias": "/.*get_xml.*exception: -/", 
+            "zindex": -2
+          }, 
+          {
+            "color": "#629e51", 
+            "alias": "/.*bibtex.*exception: -/", 
+            "zindex": -1
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "200": "#7eb26d", 
+          "inspirehep.modules.orcid.cache.OrcidCache.read_work_putcode": "#629e51", 
+          "Exception -": "#629e51", 
+          "HTTP STATUS 400 - ERROR 9042": "#f2c96d", 
+          "HTTP STATUS 404 - ERROR 9016": "#f2c96d", 
+          "HTTP STATUS 403 - ERROR 9038": "#f2c96d", 
+          "HTTP STATUS 409 - ERROR 9021": "#f2c96d", 
+          "HTTP STATUS 201 - ERROR 0": "#b7dbab", 
+          "HTTP STATUS 400 - ERROR 0": "#f2c96d", 
+          "Exception inspirehep.modules.orcid.exceptions.InputDataInvalidException": "#aea2e0", 
+          "HTTP STATUS 400 - ERROR 9023": "#f2c96d", 
+          "HTTP STATUS 200 - ERROR 0": "#7eb26d", 
+          "HTTP STATUS 401 - ERROR 0": "#f2c96d", 
+          "HTTP STATUS 400 - ERROR 9001": "#f2c96d", 
+          "HTTP STATUS 401 - ERROR 9017": "#f2c96d", 
+          "inspirehep.modules.orcid.cache.OrcidCache.write_work_putcode": "#bf1b00", 
+          "HTTP STATUS 500 - ERROR 9008": "#bf1b00"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspireappmetrics-qa", 
+        "pointradius": 5, 
+        "decimals": 0
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null", 
+        "renderer": "flot", 
+        "id": 14, 
+        "gridPos": {
+          "y": 36, 
+          "h": 9, 
+          "w": 12, 
+          "x": 12
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "name", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "metrics": [
+              {
+                "field": "value", 
+                "meta": {}, 
+                "type": "avg", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "", 
+            "timeField": "timestamp", 
+            "query": "name:inspirehep.modules.orcid.converter.*", 
+            "refId": "A"
+          }
+        ], 
+        "fill": 2, 
+        "title": "OrcidConverter | Duration", 
+        "tooltip": {
+          "sort": 2, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "avg", 
+          "total": false, 
+          "min": true, 
+          "max": true, 
+          "show": true, 
+          "current": false, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": true, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "msec", 
+            "show": true, 
+            "decimals": null
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#64b0c8", 
+            "alias": "/.*get_xml.*/"
+          }, 
+          {
+            "color": "#629e51", 
+            "alias": "/.*bibtex.*/", 
+            "zindex": 2
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "200": "#7eb26d", 
+          "HTTP STATUS 400 - ERROR 9042": "#f2c96d", 
+          "HTTP STATUS 404 - ERROR 9016": "#f2c96d", 
+          "HTTP STATUS 403 - ERROR 9038": "#f2c96d", 
+          "HTTP STATUS 409 - ERROR 9021": "#f2c96d", 
+          "HTTP STATUS 201 - ERROR 0": "#629e51", 
+          "HTTP STATUS 400 - ERROR 0": "#f2c96d", 
+          "Average value": "#e0f9d7", 
+          "HTTP STATUS 400 - ERROR 9023": "#f2c96d", 
+          "HTTP STATUS 200 - ERROR 0": "#629e51", 
+          "HTTP STATUS 401 - ERROR 0": "#f2c96d", 
+          "HTTP STATUS 400 - ERROR 9001": "#f2c96d", 
+          "HTTP STATUS 401 - ERROR 9017": "#f2c96d", 
+          "HTTP STATUS 500 - ERROR 9008": "#bf1b00"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspireappmetrics-qa", 
+        "pointradius": 5
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null as zero", 
+        "renderer": "flot", 
+        "gridPos": {
+          "y": 45, 
+          "h": 9, 
+          "w": 12, 
+          "x": 0
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "id": 11, 
+        "fill": 2, 
+        "title": "OrcidCache | Frequency", 
+        "tooltip": {
+          "sort": 2, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "total", 
+          "rightSide": false, 
+          "total": true, 
+          "min": false, 
+          "max": true, 
+          "show": true, 
+          "current": true, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": false, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "name", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "4", 
+                "fake": true
+              }, 
+              {
+                "field": "exc_fqn", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "size": "10", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "missing": "-"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "10s", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "hide": false, 
+            "metrics": [
+              {
+                "field": "value", 
+                "meta": {}, 
+                "type": "count", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "{{name}} | exception: {{exc_fqn}}", 
+            "timeField": "timestamp", 
+            "query": "name:inspirehep.modules.orcid.cache.OrcidCache.*", 
+            "refId": "A"
+          }
+        ], 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "#/10s", 
+            "show": true, 
+            "decimals": 0
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#bf1b00", 
+            "alias": "/.*/"
+          }, 
+          {
+            "color": "#ba43a9", 
+            "alias": "/.*write_work_putcode.*exception: -/", 
+            "zindex": -1
+          }, 
+          {
+            "color": "#64b0c8", 
+            "alias": "/.*has_work_content_changed.*exception: -/", 
+            "zindex": -2
+          }, 
+          {
+            "color": "#629e51", 
+            "alias": "/.*read_work_putcode.*exception: -/", 
+            "zindex": -3
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "200": "#7eb26d", 
+          "inspirehep.modules.orcid.cache.OrcidCache.read_work_putcode": "#629e51", 
+          "Exception -": "#629e51", 
+          "HTTP STATUS 400 - ERROR 9042": "#f2c96d", 
+          "HTTP STATUS 404 - ERROR 9016": "#f2c96d", 
+          "HTTP STATUS 403 - ERROR 9038": "#f2c96d", 
+          "HTTP STATUS 409 - ERROR 9021": "#f2c96d", 
+          "HTTP STATUS 201 - ERROR 0": "#b7dbab", 
+          "HTTP STATUS 400 - ERROR 0": "#f2c96d", 
+          "Exception inspirehep.modules.orcid.exceptions.InputDataInvalidException": "#aea2e0", 
+          "HTTP STATUS 400 - ERROR 9023": "#f2c96d", 
+          "HTTP STATUS 200 - ERROR 0": "#7eb26d", 
+          "HTTP STATUS 401 - ERROR 0": "#f2c96d", 
+          "HTTP STATUS 400 - ERROR 9001": "#f2c96d", 
+          "HTTP STATUS 401 - ERROR 9017": "#f2c96d", 
+          "inspirehep.modules.orcid.cache.OrcidCache.write_work_putcode": "#bf1b00", 
+          "HTTP STATUS 500 - ERROR 9008": "#bf1b00"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspireappmetrics-qa", 
+        "pointradius": 5, 
+        "decimals": 0
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null", 
+        "renderer": "flot", 
+        "id": 12, 
+        "gridPos": {
+          "y": 45, 
+          "h": 9, 
+          "w": 12, 
+          "x": 12
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "name", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "metrics": [
+              {
+                "field": "value", 
+                "meta": {}, 
+                "type": "avg", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "", 
+            "timeField": "timestamp", 
+            "query": "name:inspirehep.modules.orcid.cache.OrcidCache.*", 
+            "refId": "A"
+          }
+        ], 
+        "fill": 2, 
+        "title": "OrcidCache | Duration", 
+        "tooltip": {
+          "sort": 2, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "avg", 
+          "total": false, 
+          "min": true, 
+          "max": true, 
+          "show": true, 
+          "current": false, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": true, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "msec", 
+            "show": true, 
+            "decimals": null
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#629e51", 
+            "alias": "/.*read_work_putcode.*/"
+          }, 
+          {
+            "color": "#bf1b00", 
+            "alias": "/.*write_work_putcode.*/", 
+            "zindex": 3
+          }, 
+          {
+            "color": "#64b0c8", 
+            "alias": "/.*has_work_content_changed.*/", 
+            "zindex": 2
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "200": "#7eb26d", 
+          "HTTP STATUS 400 - ERROR 9042": "#f2c96d", 
+          "HTTP STATUS 404 - ERROR 9016": "#f2c96d", 
+          "HTTP STATUS 403 - ERROR 9038": "#f2c96d", 
+          "HTTP STATUS 409 - ERROR 9021": "#f2c96d", 
+          "HTTP STATUS 201 - ERROR 0": "#629e51", 
+          "HTTP STATUS 400 - ERROR 0": "#f2c96d", 
+          "Average value": "#e0f9d7", 
+          "HTTP STATUS 400 - ERROR 9023": "#f2c96d", 
+          "HTTP STATUS 200 - ERROR 0": "#629e51", 
+          "HTTP STATUS 401 - ERROR 0": "#f2c96d", 
+          "HTTP STATUS 400 - ERROR 9001": "#f2c96d", 
+          "HTTP STATUS 401 - ERROR 9017": "#f2c96d", 
+          "HTTP STATUS 500 - ERROR 9008": "#bf1b00"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspireappmetrics-qa", 
+        "pointradius": 5
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null as zero", 
+        "renderer": "flot", 
+        "gridPos": {
+          "y": 54, 
+          "h": 9, 
+          "w": 12, 
+          "x": 0
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "id": 15, 
+        "fill": 2, 
+        "title": "OrcidCache | Frequency", 
+        "tooltip": {
+          "sort": 2, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "total", 
+          "rightSide": false, 
+          "total": true, 
+          "min": false, 
+          "max": true, 
+          "show": true, 
+          "current": true, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": false, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "@timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "10s", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "hide": false, 
+            "metrics": [
+              {
+                "field": "value", 
+                "meta": {}, 
+                "type": "count", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "Cache hit", 
+            "timeField": "@timestamp", 
+            "query": "message:\"inspirehep.modules.orcid.domain_models: OrcidPusher cache hit*\"", 
+            "refId": "A"
+          }, 
+          {
+            "bucketAggs": [
+              {
+                "field": "@timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "metrics": [
+              {
+                "field": "select field", 
+                "type": "count", 
+                "id": "1"
+              }
+            ], 
+            "alias": "Cache miss", 
+            "timeField": "@timestamp", 
+            "query": "message:\"inspirehep.modules.orcid.domain_models: OrcidPusher cache miss*\"", 
+            "refId": "B"
+          }
+        ], 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "#/10s", 
+            "show": true, 
+            "decimals": 0
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#629e51", 
+            "alias": "/hit/"
+          }, 
+          {
+            "color": "#bf1b00", 
+            "alias": "/miss/", 
+            "zindex": 3
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "200": "#7eb26d", 
+          "inspirehep.modules.orcid.cache.OrcidCache.read_work_putcode": "#629e51", 
+          "Exception -": "#629e51", 
+          "HTTP STATUS 400 - ERROR 9042": "#f2c96d", 
+          "HTTP STATUS 404 - ERROR 9016": "#f2c96d", 
+          "HTTP STATUS 403 - ERROR 9038": "#f2c96d", 
+          "HTTP STATUS 409 - ERROR 9021": "#f2c96d", 
+          "HTTP STATUS 201 - ERROR 0": "#b7dbab", 
+          "HTTP STATUS 400 - ERROR 0": "#f2c96d", 
+          "Exception inspirehep.modules.orcid.exceptions.InputDataInvalidException": "#aea2e0", 
+          "HTTP STATUS 400 - ERROR 9023": "#f2c96d", 
+          "HTTP STATUS 200 - ERROR 0": "#7eb26d", 
+          "HTTP STATUS 401 - ERROR 0": "#f2c96d", 
+          "HTTP STATUS 400 - ERROR 9001": "#f2c96d", 
+          "HTTP STATUS 401 - ERROR 9017": "#f2c96d", 
+          "inspirehep.modules.orcid.cache.OrcidCache.write_work_putcode": "#bf1b00", 
+          "HTTP STATUS 500 - ERROR 9008": "#bf1b00"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspirelogs-qa", 
+        "pointradius": 5, 
+        "decimals": 0
+      }
+    ], 
+    "id": 10, 
+    "uid": "Y0XNHMPmz"
+  }
+}
