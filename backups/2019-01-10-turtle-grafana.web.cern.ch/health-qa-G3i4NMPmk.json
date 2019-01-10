@@ -10,10 +10,10 @@
     "canStar": true, 
     "expires": "0001-01-01T00:00:00Z", 
     "isFolder": false, 
-    "updated": "2018-12-11T10:57:29Z", 
+    "updated": "2019-01-10T22:17:14Z", 
     "slug": "health-qa", 
     "folderTitle": "General", 
-    "version": 5, 
+    "version": 6, 
     "createdBy": "inspire", 
     "updatedBy": "inspire", 
     "folderId": 0, 
@@ -72,7 +72,7 @@
         "1d"
       ]
     }, 
-    "version": 5, 
+    "version": 6, 
     "time": {
       "to": "now", 
       "from": "now-6h"
@@ -458,6 +458,18 @@
           {
             "bucketAggs": [
               {
+                "field": "host.keyword", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
                 "field": "@timestamp", 
                 "type": "date_histogram", 
                 "id": "2", 
@@ -477,7 +489,7 @@
                 "settings": {}
               }
             ], 
-            "alias": "Queue full", 
+            "alias": "Queue full on {{host.keyword}}", 
             "timeField": "@timestamp", 
             "query": "message:\"Discard metric\"", 
             "refId": "A"
