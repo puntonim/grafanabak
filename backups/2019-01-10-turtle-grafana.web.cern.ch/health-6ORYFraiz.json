@@ -1,0 +1,661 @@
+{
+  "meta": {
+    "hasAcl": false, 
+    "provisioned": false, 
+    "canSave": true, 
+    "canAdmin": true, 
+    "folderUrl": "", 
+    "created": "2018-11-08T12:05:18Z", 
+    "url": "/d/6ORYFraiz/health", 
+    "canStar": true, 
+    "expires": "0001-01-01T00:00:00Z", 
+    "isFolder": false, 
+    "updated": "2019-01-10T16:40:38Z", 
+    "slug": "health", 
+    "folderTitle": "General", 
+    "version": 15, 
+    "createdBy": "admin", 
+    "updatedBy": "inspire", 
+    "folderId": 0, 
+    "type": "db", 
+    "canEdit": true
+  }, 
+  "dashboard": {
+    "style": "dark", 
+    "templating": {
+      "list": []
+    }, 
+    "links": [], 
+    "tags": [], 
+    "graphTooltip": 0, 
+    "title": "Health", 
+    "editable": true, 
+    "refresh": false, 
+    "annotations": {
+      "list": [
+        {
+          "enable": true, 
+          "hide": true, 
+          "name": "Annotations & Alerts", 
+          "builtIn": 1, 
+          "datasource": "-- Grafana --", 
+          "type": "dashboard", 
+          "iconColor": "rgba(0, 211, 255, 1)"
+        }
+      ]
+    }, 
+    "gnetId": null, 
+    "timepicker": {
+      "time_options": [
+        "5m", 
+        "15m", 
+        "1h", 
+        "6h", 
+        "12h", 
+        "24h", 
+        "2d", 
+        "7d", 
+        "30d"
+      ], 
+      "refresh_intervals": [
+        "5s", 
+        "10s", 
+        "30s", 
+        "1m", 
+        "5m", 
+        "15m", 
+        "30m", 
+        "1h", 
+        "2h", 
+        "1d"
+      ]
+    }, 
+    "version": 15, 
+    "time": {
+      "to": "now", 
+      "from": "now-6h"
+    }, 
+    "timezone": "", 
+    "schemaVersion": 16, 
+    "panels": [
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null", 
+        "renderer": "flot", 
+        "id": 6, 
+        "gridPos": {
+          "y": 0, 
+          "h": 9, 
+          "w": 12, 
+          "x": 0
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "targets": [
+          {
+            "metrics": [
+              {
+                "field": "select field", 
+                "meta": {}, 
+                "type": "count", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "query": "name:health", 
+            "bucketAggs": [
+              {
+                "field": "http_status_code", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "refId": "A", 
+            "timeField": "timestamp"
+          }
+        ], 
+        "fill": 2, 
+        "title": "health", 
+        "tooltip": {
+          "sort": 0, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "total": false, 
+          "min": false, 
+          "max": false, 
+          "show": true, 
+          "current": false, 
+          "hideEmpty": false, 
+          "values": false, 
+          "alignAsTable": true, 
+          "avg": false, 
+          "hideZero": false
+        }, 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "#", 
+            "show": true, 
+            "decimals": 0
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {}, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspiremonitoring", 
+        "pointradius": 5
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null", 
+        "renderer": "flot", 
+        "id": 4, 
+        "gridPos": {
+          "y": 0, 
+          "h": 9, 
+          "w": 12, 
+          "x": 12
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "targets": [
+          {
+            "metrics": [
+              {
+                "field": "select field", 
+                "meta": {}, 
+                "type": "count", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "query": "name:healthcelery", 
+            "bucketAggs": [
+              {
+                "field": "http_status_code", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "refId": "A", 
+            "timeField": "timestamp"
+          }
+        ], 
+        "fill": 2, 
+        "title": "healthcelery", 
+        "tooltip": {
+          "sort": 0, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "total": false, 
+          "min": false, 
+          "max": false, 
+          "show": true, 
+          "current": false, 
+          "hideEmpty": false, 
+          "values": false, 
+          "alignAsTable": true, 
+          "avg": false, 
+          "hideZero": false
+        }, 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "#", 
+            "show": true, 
+            "decimals": 0
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {}, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspiremonitoring", 
+        "pointradius": 5
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null", 
+        "renderer": "flot", 
+        "id": 2, 
+        "gridPos": {
+          "y": 9, 
+          "h": 9, 
+          "w": 12, 
+          "x": 0
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "targets": [
+          {
+            "metrics": [
+              {
+                "field": "select field", 
+                "meta": {}, 
+                "type": "count", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "query": "name:\"api/literature/20\"", 
+            "bucketAggs": [
+              {
+                "field": "http_status_code", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "refId": "A", 
+            "timeField": "timestamp"
+          }
+        ], 
+        "fill": 2, 
+        "title": "api/literature/20", 
+        "tooltip": {
+          "sort": 0, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "total": false, 
+          "min": false, 
+          "max": false, 
+          "show": true, 
+          "current": false, 
+          "hideEmpty": false, 
+          "values": false, 
+          "alignAsTable": true, 
+          "avg": false, 
+          "hideZero": false
+        }, 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "#", 
+            "show": true, 
+            "decimals": 0
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {}, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspiremonitoring", 
+        "pointradius": 5
+      }, 
+      {
+        "bars": false, 
+        "timeFrom": null, 
+        "links": [], 
+        "thresholds": [], 
+        "spaceLength": 10, 
+        "nullPointMode": "null", 
+        "renderer": "flot", 
+        "id": 7, 
+        "gridPos": {
+          "y": 9, 
+          "h": 9, 
+          "w": 12, 
+          "x": 12
+        }, 
+        "linewidth": 2, 
+        "steppedLine": true, 
+        "targets": [
+          {
+            "bucketAggs": [
+              {
+                "field": "host.keyword", 
+                "settings": {
+                  "orderBy": "_term", 
+                  "order": "desc", 
+                  "min_doc_count": 1, 
+                  "size": "10"
+                }, 
+                "type": "terms", 
+                "id": "3", 
+                "fake": true
+              }, 
+              {
+                "field": "@timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "metrics": [
+              {
+                "field": "select field", 
+                "meta": {}, 
+                "type": "count", 
+                "id": "1", 
+                "settings": {}
+              }
+            ], 
+            "alias": "Queue full on {{host.keyword}}", 
+            "timeField": "@timestamp", 
+            "query": "message:\"Discard metric\"", 
+            "refId": "A"
+          }, 
+          {
+            "bucketAggs": [
+              {
+                "field": "@timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "metrics": [
+              {
+                "field": "select field", 
+                "type": "count", 
+                "id": "1"
+              }
+            ], 
+            "alias": "Write error", 
+            "timeField": "@timestamp", 
+            "query": "message:\"write failure\"", 
+            "refId": "B"
+          }, 
+          {
+            "bucketAggs": [
+              {
+                "field": "@timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "metrics": [
+              {
+                "field": "select field", 
+                "type": "count", 
+                "id": "1"
+              }
+            ], 
+            "alias": "Worker stopped", 
+            "timeField": "@timestamp", 
+            "query": "message:\"stopping the worker due to\"", 
+            "refId": "C"
+          }, 
+          {
+            "bucketAggs": [
+              {
+                "field": "@timestamp", 
+                "type": "date_histogram", 
+                "id": "2", 
+                "settings": {
+                  "trimEdges": 0, 
+                  "interval": "auto", 
+                  "min_doc_count": 0
+                }
+              }
+            ], 
+            "metrics": [
+              {
+                "field": "select field", 
+                "type": "count", 
+                "id": "1"
+              }
+            ], 
+            "alias": "ES TransportError (like ConnectionTimeout)", 
+            "timeField": "@timestamp", 
+            "query": "message:\"bulk_write metrics\"", 
+            "refId": "D"
+          }
+        ], 
+        "fill": 2, 
+        "title": "time-execution errors", 
+        "tooltip": {
+          "sort": 0, 
+          "shared": true, 
+          "value_type": "individual"
+        }, 
+        "legend": {
+          "sort": "total", 
+          "rightSide": false, 
+          "total": true, 
+          "min": false, 
+          "max": false, 
+          "show": true, 
+          "current": false, 
+          "hideEmpty": false, 
+          "values": true, 
+          "alignAsTable": true, 
+          "avg": false, 
+          "sortDesc": true, 
+          "hideZero": false
+        }, 
+        "yaxes": [
+          {
+            "logBase": 1, 
+            "min": null, 
+            "max": null, 
+            "format": "short", 
+            "label": "#", 
+            "show": true, 
+            "decimals": 0
+          }, 
+          {
+            "logBase": 1, 
+            "show": true, 
+            "max": null, 
+            "format": "short", 
+            "min": null, 
+            "label": null
+          }
+        ], 
+        "xaxis": {
+          "buckets": null, 
+          "show": true, 
+          "values": [], 
+          "mode": "time", 
+          "name": null
+        }, 
+        "seriesOverrides": [
+          {
+            "color": "#bf1b00", 
+            "alias": "/Queue full.*/", 
+            "zindex": 3
+          }, 
+          {
+            "color": "#f9934e", 
+            "alias": "Write error"
+          }, 
+          {
+            "color": "#ba43a9", 
+            "alias": "Worker stopped"
+          }, 
+          {
+            "color": "#f2c96d", 
+            "alias": "ConnectionTimeout"
+          }
+        ], 
+        "percentage": false, 
+        "type": "graph", 
+        "dashes": false, 
+        "dashLength": 10, 
+        "stack": false, 
+        "yaxis": {
+          "align": false, 
+          "alignLevel": null
+        }, 
+        "timeShift": null, 
+        "aliasColors": {
+          "ConnectionTimeout": "#f4d598", 
+          "Count": "#eab839"
+        }, 
+        "lines": true, 
+        "points": false, 
+        "datasource": "inspirelogs", 
+        "pointradius": 5
+      }
+    ], 
+    "id": 3, 
+    "uid": "6ORYFraiz"
+  }
+}
