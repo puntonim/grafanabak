@@ -26,6 +26,8 @@ backup/%: _make_venv_if_empty
 restore/%: _make_venv_if_empty
 	$(PYTHON) grafanabak.py restore $*
 
+restorenew/%: _make_venv_if_empty
+	$(PYTHON) grafanabak.py restore-as-new $*
 
 ## Utilities for the venv currently active.
 
