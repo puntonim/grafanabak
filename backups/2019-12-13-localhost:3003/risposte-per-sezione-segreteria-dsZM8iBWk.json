@@ -5,14 +5,14 @@
     "canEdit": true,
     "canAdmin": true,
     "canStar": true,
-    "slug": "aspetto-assistenti",
-    "url": "/d/0ltOOgBWz/aspetto-assistenti",
+    "slug": "risposte-per-sezione-segreteria",
+    "url": "/d/dsZM8iBWk/risposte-per-sezione-segreteria",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2019-12-12T17:21:19Z",
-    "updated": "2019-12-13T22:19:58Z",
+    "created": "2019-12-13T16:01:01Z",
+    "updated": "2019-12-13T16:02:44Z",
     "updatedBy": "admin",
-    "createdBy": "Anonymous",
-    "version": 5,
+    "createdBy": "admin",
+    "version": 3,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -38,141 +38,13 @@
     "editable": true,
     "gnetId": null,
     "graphTooltip": 1,
-    "id": 2,
-    "iteration": 1576275547435,
+    "id": 8,
+    "iteration": 1576252861354,
     "links": [],
     "panels": [
       {
         "aliasColors": {
           "Count": "red",
-          "Negativo": "red",
-          "Positivo": "green",
-          "negative": "red"
-        },
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "Answers",
-        "decimals": 0,
-        "fill": 4,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 9,
-          "w": 12,
-          "x": 0,
-          "y": 0
-        },
-        "hiddenSeries": false,
-        "id": 5,
-        "interval": "$GROUP_TIME_INTERVAL",
-        "legend": {
-          "avg": false,
-          "current": false,
-          "hideEmpty": false,
-          "hideZero": false,
-          "max": false,
-          "min": false,
-          "show": true,
-          "total": true,
-          "values": true
-        },
-        "lines": true,
-        "linewidth": 2,
-        "nullPointMode": "null",
-        "options": {
-          "dataLinks": []
-        },
-        "percentage": true,
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "",
-            "bucketAggs": [
-              {
-                "fake": true,
-                "field": "tag_sentiment",
-                "id": "3",
-                "settings": {
-                  "min_doc_count": 1,
-                  "order": "desc",
-                  "orderBy": "_term",
-                  "size": "10"
-                },
-                "type": "terms"
-              },
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "auto",
-                  "min_doc_count": 1,
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:assistants",
-            "refId": "A",
-            "timeField": "timestamp"
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "Sentiment",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "short",
-            "label": "#",
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          },
-          {
-            "format": "short",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "aliasColors": {
-          "Count": "red",
           "Media": "purple",
           "Negativo": "red",
           "Positivo": "green"
@@ -182,134 +54,14 @@
         "dashes": false,
         "datasource": "Answers",
         "decimals": 1,
-        "description": "",
-        "fill": 4,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 9,
-          "w": 12,
-          "x": 12,
-          "y": 0
-        },
-        "hiddenSeries": false,
-        "id": 4,
-        "interval": "$GROUP_TIME_INTERVAL",
-        "legend": {
-          "avg": true,
-          "current": true,
-          "hideEmpty": false,
-          "hideZero": false,
-          "max": false,
-          "min": false,
-          "show": true,
-          "total": false,
-          "values": true
-        },
-        "lines": true,
-        "linewidth": 2,
-        "nullPointMode": "null",
-        "options": {
-          "dataLinks": []
-        },
-        "percentage": true,
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "Media",
-            "bucketAggs": [
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "$GROUP_TIME_INTERVAL",
-                  "min_doc_count": 1,
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "value.short",
-                "id": "1",
-                "meta": {},
-                "settings": {},
-                "type": "avg"
-              }
-            ],
-            "query": "tag_topic:assistants",
-            "refId": "A",
-            "timeField": "timestamp"
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "Tutti gli attributi",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "decimals": 0,
-            "format": "short",
-            "label": "voto",
-            "logBase": 1,
-            "max": "5",
-            "min": "1",
-            "show": true
-          },
-          {
-            "format": "short",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "aliasColors": {
-          "Count": "red",
-          "Media": "purple",
-          "Negativo": "red",
-          "Positivo": "green"
-        },
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "Answers",
-        "decimals": 1,
-        "description": "",
+        "description": "Prima met\u00e0: trend pos ~90% - Seconda met\u00e0: trend neg ~90%",
         "fill": 4,
         "fillGradient": 0,
         "gridPos": {
           "h": 9,
           "w": 12,
           "x": 0,
-          "y": 9
+          "y": 0
         },
         "hiddenSeries": false,
         "id": 9,
@@ -363,7 +115,7 @@
                 "type": "avg"
               }
             ],
-            "query": "tag_topic:assistants AND tag_attribute:courtesy",
+            "query": "section:SECRETARIAT AND tag_attribute:courtesy",
             "refId": "A",
             "timeField": "timestamp"
           }
@@ -422,14 +174,14 @@
         "dashes": false,
         "datasource": "Answers",
         "decimals": 1,
-        "description": "",
+        "description": "Prima met\u00e0: trend pos ~90%",
         "fill": 4,
         "fillGradient": 0,
         "gridPos": {
           "h": 9,
           "w": 12,
           "x": 12,
-          "y": 9
+          "y": 0
         },
         "hiddenSeries": false,
         "id": 6,
@@ -483,7 +235,7 @@
                 "type": "avg"
               }
             ],
-            "query": "tag_topic:assistants AND tag_attribute:listening",
+            "query": "section:SECRETARIAT AND tag_attribute:listening",
             "refId": "A",
             "timeField": "timestamp"
           }
@@ -542,17 +294,17 @@
         "dashes": false,
         "datasource": "Answers",
         "decimals": 1,
-        "description": "Prima met\u00e0: trend neg ~90% - Seconda met\u00e0: trend pos ~90%",
+        "description": "",
         "fill": 4,
         "fillGradient": 0,
         "gridPos": {
           "h": 9,
           "w": 12,
           "x": 0,
-          "y": 18
+          "y": 9
         },
         "hiddenSeries": false,
-        "id": 8,
+        "id": 7,
         "interval": "$GROUP_TIME_INTERVAL",
         "legend": {
           "avg": true,
@@ -603,7 +355,7 @@
                 "type": "avg"
               }
             ],
-            "query": "tag_topic:assistants AND tag_attribute:communication",
+            "query": "section:SECRETARIAT AND tag_attribute:communication",
             "refId": "A",
             "timeField": "timestamp"
           }
@@ -662,17 +414,17 @@
         "dashes": false,
         "datasource": "Answers",
         "decimals": 1,
-        "description": "Seconda met\u00e0: trend pos ~90%",
+        "description": "",
         "fill": 4,
         "fillGradient": 0,
         "gridPos": {
           "h": 9,
           "w": 12,
           "x": 12,
-          "y": 18
+          "y": 9
         },
         "hiddenSeries": false,
-        "id": 7,
+        "id": 8,
         "interval": "$GROUP_TIME_INTERVAL",
         "legend": {
           "avg": true,
@@ -723,7 +475,7 @@
                 "type": "avg"
               }
             ],
-            "query": "tag_topic:assistants AND tag_attribute:cleanliness",
+            "query": "section:SECRETARIAT AND tag_attribute:problemsolving",
             "refId": "A",
             "timeField": "timestamp"
           }
@@ -732,7 +484,7 @@
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Attributo: pulizia",
+        "title": "Attributo: risoluzione dei problemi",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -852,8 +604,8 @@
       ]
     },
     "timezone": "",
-    "title": "Aspetto: assistenti",
-    "uid": "0ltOOgBWz",
-    "version": 5
+    "title": "Risposte per sezione: segreteria",
+    "uid": "dsZM8iBWk",
+    "version": 3
   }
 }

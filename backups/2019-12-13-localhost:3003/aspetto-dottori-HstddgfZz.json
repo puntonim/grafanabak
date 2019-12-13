@@ -9,10 +9,10 @@
     "url": "/d/HstddgfZz/aspetto-dottori",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2019-12-12T17:21:19Z",
-    "updated": "2019-12-12T17:21:19Z",
-    "updatedBy": "Anonymous",
+    "updated": "2019-12-13T22:02:09Z",
+    "updatedBy": "admin",
     "createdBy": "Anonymous",
-    "version": 1,
+    "version": 3,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -39,14 +39,15 @@
     "gnetId": null,
     "graphTooltip": 1,
     "id": 1,
-    "iteration": 1576103057400,
+    "iteration": 1576274098358,
     "links": [],
     "panels": [
       {
         "aliasColors": {
           "Count": "red",
           "Negativo": "red",
-          "Positivo": "green"
+          "Positivo": "green",
+          "negative": "red"
         },
         "bars": false,
         "dashLength": 10,
@@ -91,14 +92,26 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "Positivo",
+            "alias": "",
             "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_sentiment",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
               {
                 "field": "timestamp",
                 "id": "2",
                 "settings": {
                   "interval": "auto",
-                  "min_doc_count": 0,
+                  "min_doc_count": 1,
                   "trimEdges": 0
                 },
                 "type": "date_histogram"
@@ -111,33 +124,8 @@
                 "type": "count"
               }
             ],
-            "query": "tag_topic:doctors AND tag_sentiment:positive",
+            "query": "tag_topic:doctors",
             "refId": "A",
-            "timeField": "timestamp"
-          },
-          {
-            "alias": "Negativo",
-            "bucketAggs": [
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "auto",
-                  "min_doc_count": 0,
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:doctors AND tag_sentiment:negative",
-            "refId": "B",
             "timeField": "timestamp"
           }
         ],
@@ -162,7 +150,7 @@
         "yaxes": [
           {
             "format": "short",
-            "label": null,
+            "label": "#",
             "logBase": 1,
             "max": null,
             "min": null,
@@ -297,10 +285,264 @@
           {
             "decimals": 0,
             "format": "short",
-            "label": null,
+            "label": "voto",
             "logBase": 1,
             "max": "5",
             "min": "1",
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Negativo": "red",
+          "Positivo": "green"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 0,
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 9
+        },
+        "hiddenSeries": false,
+        "id": 10,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": true,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "",
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_doctor_name",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "0"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "select field",
+                "id": "1",
+                "type": "count"
+              }
+            ],
+            "query": "tag_topic:doctors AND tag_sentiment:positive",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Sentiment positivo per dottore",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": "#",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Negativo": "red",
+          "Positivo": "green"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 0,
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 9
+        },
+        "hiddenSeries": false,
+        "id": 11,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": true,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "",
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_doctor_name",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "0"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "select field",
+                "id": "1",
+                "type": "count"
+              }
+            ],
+            "query": "tag_topic:doctors AND tag_sentiment:negative",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Sentiment negativo per dottore",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": "#",
+            "logBase": 1,
+            "max": null,
+            "min": null,
             "show": true
           },
           {
@@ -336,7 +578,7 @@
           "h": 9,
           "w": 12,
           "x": 0,
-          "y": 9
+          "y": 18
         },
         "hiddenSeries": false,
         "id": 9,
@@ -431,7 +673,7 @@
           {
             "decimals": 0,
             "format": "short",
-            "label": null,
+            "label": "voto",
             "logBase": 1,
             "max": "5",
             "min": "1",
@@ -470,7 +712,7 @@
           "h": 9,
           "w": 12,
           "x": 12,
-          "y": 9
+          "y": 18
         },
         "hiddenSeries": false,
         "id": 6,
@@ -563,7 +805,7 @@
           {
             "decimals": 0,
             "format": "short",
-            "label": null,
+            "label": "voto",
             "logBase": 1,
             "max": "5",
             "min": "1",
@@ -602,7 +844,7 @@
           "h": 9,
           "w": 12,
           "x": 0,
-          "y": 18
+          "y": 27
         },
         "hiddenSeries": false,
         "id": 7,
@@ -695,7 +937,7 @@
           {
             "decimals": 0,
             "format": "short",
-            "label": null,
+            "label": "voto",
             "logBase": 1,
             "max": "5",
             "min": "1",
@@ -734,7 +976,7 @@
           "h": 9,
           "w": 12,
           "x": 12,
-          "y": 18
+          "y": 27
         },
         "hiddenSeries": false,
         "id": 8,
@@ -827,7 +1069,7 @@
           {
             "decimals": 0,
             "format": "short",
-            "label": null,
+            "label": "voto",
             "logBase": 1,
             "max": "5",
             "min": "1",
@@ -931,6 +1173,6 @@
     "timezone": "",
     "title": "Aspetto: dottori",
     "uid": "HstddgfZz",
-    "version": 1
+    "version": 3
   }
 }

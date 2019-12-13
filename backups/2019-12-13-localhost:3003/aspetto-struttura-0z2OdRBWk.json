@@ -9,10 +9,10 @@
     "url": "/d/0z2OdRBWk/aspetto-struttura",
     "expires": "0001-01-01T00:00:00Z",
     "created": "2019-12-12T17:21:19Z",
-    "updated": "2019-12-12T23:39:39Z",
+    "updated": "2019-12-13T22:15:21Z",
     "updatedBy": "admin",
     "createdBy": "Anonymous",
-    "version": 12,
+    "version": 17,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -39,14 +39,15 @@
     "gnetId": null,
     "graphTooltip": 0,
     "id": 4,
-    "iteration": 1576192342705,
+    "iteration": 1576275214247,
     "links": [],
     "panels": [
       {
         "aliasColors": {
           "Count": "red",
           "Negativo": "red",
-          "Positivo": "green"
+          "Positivo": "green",
+          "negative": "red"
         },
         "bars": false,
         "dashLength": 10,
@@ -91,8 +92,20 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "Positivo",
+            "alias": "",
             "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_sentiment",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
               {
                 "field": "timestamp",
                 "id": "2",
@@ -111,33 +124,8 @@
                 "type": "count"
               }
             ],
-            "query": "tag_topic:facility AND tag_sentiment:positive AND NOT (section:FACILITY AND value:false)",
+            "query": "tag_topic:facility  AND NOT (section:FACILITY AND value:false)",
             "refId": "A",
-            "timeField": "timestamp"
-          },
-          {
-            "alias": "Negativo",
-            "bucketAggs": [
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "$GROUP_TIME_INTERVAL",
-                  "min_doc_count": 1,
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:facility AND tag_sentiment:negative AND NOT (section:FACILITY AND value:false)",
-            "refId": "B",
             "timeField": "timestamp"
           }
         ],
@@ -162,7 +150,7 @@
         "yaxes": [
           {
             "format": "short",
-            "label": null,
+            "label": "#",
             "logBase": 1,
             "max": null,
             "min": null,
@@ -284,7 +272,7 @@
           {
             "decimals": 0,
             "format": "short",
-            "label": null,
+            "label": "voto",
             "logBase": 1,
             "max": "5",
             "min": "1",
@@ -310,7 +298,8 @@
           "Count": "red",
           "Negativo": "red",
           "Positivo": "green",
-          "Positivo FACILITY": "green"
+          "Positivo FACILITY": "green",
+          "negative": "red"
         },
         "bars": false,
         "dashLength": 10,
@@ -356,8 +345,20 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "Positivo",
+            "alias": "",
             "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_sentiment",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
               {
                 "field": "timestamp",
                 "id": "2",
@@ -376,33 +377,8 @@
                 "type": "count"
               }
             ],
-            "query": "tag_topic:facility AND tag_sentiment:positive AND tag_attribute:cleanliness AND NOT (section:FACILITY AND value:false)",
+            "query": "tag_topic:facility AND tag_attribute:cleanliness AND NOT (section:FACILITY AND value:false)",
             "refId": "A",
-            "timeField": "timestamp"
-          },
-          {
-            "alias": "Negativo",
-            "bucketAggs": [
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "$GROUP_TIME_INTERVAL",
-                  "min_doc_count": 1,
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:facility AND tag_sentiment:negative AND tag_attribute:cleanliness AND NOT (section:FACILITY AND value:false)",
-            "refId": "B",
             "timeField": "timestamp"
           }
         ],
@@ -427,7 +403,7 @@
         "yaxes": [
           {
             "format": "short",
-            "label": null,
+            "label": "#",
             "logBase": 1,
             "max": null,
             "min": null,
@@ -451,7 +427,8 @@
         "aliasColors": {
           "Count": "red",
           "Negativo": "red",
-          "Positivo": "green"
+          "Positivo": "green",
+          "negative": "red"
         },
         "bars": true,
         "dashLength": 10,
@@ -497,8 +474,20 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "Positivo",
+            "alias": "",
             "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_sentiment",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
               {
                 "field": "timestamp",
                 "id": "2",
@@ -519,33 +508,8 @@
                 "type": "count"
               }
             ],
-            "query": "tag_topic:facility AND tag_sentiment:positive AND tag_attribute:equipment AND NOT (section:FACILITY AND value:false)",
+            "query": "tag_topic:facility AND tag_attribute:equipment AND NOT (section:FACILITY AND value:false)",
             "refId": "A",
-            "timeField": "timestamp"
-          },
-          {
-            "alias": "Negativo",
-            "bucketAggs": [
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "auto",
-                  "min_doc_count": 1,
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:facility AND tag_sentiment:negative AND tag_attribute:equipment AND NOT (section:FACILITY AND value:false)",
-            "refId": "B",
             "timeField": "timestamp"
           }
         ],
@@ -570,7 +534,7 @@
         "yaxes": [
           {
             "format": "short",
-            "label": null,
+            "label": "#",
             "logBase": 1,
             "max": null,
             "min": null,
@@ -594,7 +558,8 @@
         "aliasColors": {
           "Count": "red",
           "Negativo": "red",
-          "Positivo": "green"
+          "Positivo": "green",
+          "negative": "red"
         },
         "bars": true,
         "dashLength": 10,
@@ -640,8 +605,20 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "Positivo",
+            "alias": "",
             "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_sentiment",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
               {
                 "field": "timestamp",
                 "id": "2",
@@ -661,33 +638,8 @@
                 "type": "count"
               }
             ],
-            "query": "tag_topic:facility AND tag_sentiment:positive AND tag_attribute:temperature AND NOT (section:FACILITY AND value:false)",
+            "query": "tag_topic:facility AND tag_attribute:temperature AND NOT (section:FACILITY AND value:false)",
             "refId": "A",
-            "timeField": "timestamp"
-          },
-          {
-            "alias": "Negativo",
-            "bucketAggs": [
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "$GROUP_TIME_INTERVAL",
-                  "min_doc_count": 1,
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:facility AND tag_sentiment:negative AND tag_attribute:temperature AND NOT (section:FACILITY AND value:false)",
-            "refId": "B",
             "timeField": "timestamp"
           }
         ],
@@ -712,7 +664,7 @@
         "yaxes": [
           {
             "format": "short",
-            "label": null,
+            "label": "#",
             "logBase": 1,
             "max": null,
             "min": null,
@@ -736,7 +688,8 @@
         "aliasColors": {
           "Count": "red",
           "Negativo": "red",
-          "Positivo": "green"
+          "Positivo": "green",
+          "negative": "red"
         },
         "bars": false,
         "dashLength": 10,
@@ -782,8 +735,20 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "Positivo",
+            "alias": "",
             "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_sentiment",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
               {
                 "field": "timestamp",
                 "id": "2",
@@ -803,33 +768,8 @@
                 "type": "count"
               }
             ],
-            "query": "tag_topic:facility AND tag_sentiment:positive AND tag_attribute:planning AND NOT (section:FACILITY AND value:false)",
+            "query": "tag_topic:facility AND tag_attribute:planning AND NOT (section:FACILITY AND value:false)",
             "refId": "A",
-            "timeField": "timestamp"
-          },
-          {
-            "alias": "Negativo",
-            "bucketAggs": [
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "$GROUP_TIME_INTERVAL",
-                  "min_doc_count": 1,
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:facility AND tag_sentiment:negative AND tag_attribute:planning AND NOT (section:FACILITY AND value:false)",
-            "refId": "B",
             "timeField": "timestamp"
           }
         ],
@@ -854,7 +794,7 @@
         "yaxes": [
           {
             "format": "short",
-            "label": null,
+            "label": "#",
             "logBase": 1,
             "max": null,
             "min": null,
@@ -879,7 +819,8 @@
           "Count": "red",
           "Negativo": "red",
           "Non so": "rgb(188, 190, 191)",
-          "Positivo": "green"
+          "Positivo": "green",
+          "negative": "red"
         },
         "bars": false,
         "dashLength": 10,
@@ -925,8 +866,20 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "Positivo",
+            "alias": "",
             "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_sentiment",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
               {
                 "field": "timestamp",
                 "id": "2",
@@ -946,33 +899,8 @@
                 "type": "count"
               }
             ],
-            "query": "tag_topic:facility AND tag_sentiment:positive AND tag_attribute:parking AND NOT (section:FACILITY AND value:false)",
+            "query": "tag_topic:facility AND tag_attribute:parking AND NOT (section:FACILITY AND value:false)",
             "refId": "A",
-            "timeField": "timestamp"
-          },
-          {
-            "alias": "Negativo",
-            "bucketAggs": [
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "$GROUP_TIME_INTERVAL",
-                  "min_doc_count": 1,
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:facility AND tag_sentiment:negative AND tag_attribute:parking AND NOT (section:FACILITY AND value:false)",
-            "refId": "B",
             "timeField": "timestamp"
           },
           {
@@ -1022,7 +950,7 @@
         "yaxes": [
           {
             "format": "short",
-            "label": null,
+            "label": "#",
             "logBase": 1,
             "max": null,
             "min": null,
@@ -1143,7 +1071,7 @@
           {
             "decimals": 0,
             "format": "short",
-            "label": null,
+            "label": "voto",
             "logBase": 1,
             "max": "5",
             "min": "1",
@@ -1264,7 +1192,7 @@
           {
             "decimals": 0,
             "format": "short",
-            "label": null,
+            "label": "voto",
             "logBase": 1,
             "max": "5",
             "min": "1",
@@ -1288,7 +1216,8 @@
         "aliasColors": {
           "Count": "red",
           "Negativo": "red",
-          "Positivo": "green"
+          "Positivo": "green",
+          "negative": "red"
         },
         "bars": false,
         "dashLength": 10,
@@ -1334,8 +1263,20 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "Positivo",
+            "alias": "",
             "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_sentiment",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
               {
                 "field": "timestamp",
                 "id": "2",
@@ -1355,33 +1296,8 @@
                 "type": "count"
               }
             ],
-            "query": "tag_topic:facility AND tag_sentiment:positive AND tag_attribute:noise AND NOT (section:FACILITY AND value:false)",
+            "query": "tag_topic:facility AND tag_attribute:noise AND NOT (section:FACILITY AND value:false)",
             "refId": "A",
-            "timeField": "timestamp"
-          },
-          {
-            "alias": "Negativo",
-            "bucketAggs": [
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "$GROUP_TIME_INTERVAL",
-                  "min_doc_count": 1,
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:facility AND tag_sentiment:negative AND tag_attribute:noise AND NOT (section:FACILITY AND value:false)",
-            "refId": "B",
             "timeField": "timestamp"
           }
         ],
@@ -1406,7 +1322,7 @@
         "yaxes": [
           {
             "format": "short",
-            "label": null,
+            "label": "#",
             "logBase": 1,
             "max": null,
             "min": null,
@@ -1510,6 +1426,6 @@
     "timezone": "",
     "title": "Aspetto: struttura",
     "uid": "0z2OdRBWk",
-    "version": 12
+    "version": 17
   }
 }
