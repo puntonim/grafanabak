@@ -12,8 +12,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 class Backup(object):
-    def __init__(self, api_key, base_url):
+    def __init__(self, api_key, base_url, project_name):
         self.base_url = base_url
+        self.project_name = project_name
 
         self.session = requests.Session()
         self.session.headers.update({"Authorization": "Bearer {}".format(api_key)})
@@ -42,16 +43,21 @@ class Backup(object):
         uid = dashboard_source["dashboard"]["uid"]
         click.echo('Backing up "{}" - uid={}'.format(title_orig, uid))
 
-        file_name = "{}-{}.json".format(title, uid)
+        # Create project dir, if necessary.
+        project_dir_path = os.path.join(BASE_DIR, "backups", self.project_name)
+        if not os.path.exists(project_dir_path):
+            os.makedirs(project_dir_path)
+        # Create (sub)dir, if necessary.
         today = datetime.date.today()
-        dir_name = "{}-{}".format(
+        subdir_name = "{}-{}".format(
             today.strftime("%Y-%m-%d"), self.base_url.split("://")[1].split("/")[0]
         )
-        dir_path = os.path.join(BASE_DIR, "backups", dir_name)
-        if not os.path.exists(dir_path):
-            os.makedirs(dir_path)
-        file_path = os.path.join(dir_path, file_name)
-
+        subdir_path = os.path.join(project_dir_path, subdir_name)
+        if not os.path.exists(subdir_path):
+            os.makedirs(subdir_path)
+        # Create the json file.
+        file_name = "{}-{}.json".format(title, uid)
+        file_path = os.path.join(subdir_path, file_name)
         with open(file_path, "w") as fout:
             fout.write(json.dumps(dashboard_source, indent=2))
 

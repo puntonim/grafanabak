@@ -15,22 +15,22 @@ $ pip install -r requirements/requirements-base.txt
 
 ## BACKUP
 # Backup all dashboards:
-$ python grafanabak.py backup http://turtle-grafana.web.cern.ch
+$ python grafanabak.py backup http://turtle-grafana.web.cern.ch turtle-cern
 
 ## RESTORE
 # Restore by updating the existing dashboard:
-$ python grafanabak.py restore http://127.0.0.1:3000 ./backups/dir/file.json
+$ python grafanabak.py restore http://127.0.0.1:3000 ./backups/mierecensioni/subdir/file.json
 # Restore all dashboards in a dir (updating):
-$ python grafanabak.py restore http://127.0.0.1:3000 ./backups/dir
+$ python grafanabak.py restore http://127.0.0.1:3000 ./backups/mierecensioni/subdir
 # Restore by creating a new dashboard:
-$ python grafanabak.py restore-as-new http://127.0.0.1:3000 ./backups/dir/file.json
+$ python grafanabak.py restore-as-new http://127.0.0.1:3000 ./backups/mierecensioni/subdir/file.json
 ```
 
 
 ## Makefile
 You can use Makefile shortcuts:
 ```bash
-$ make backup/http://turtle-grafana.web.cern.ch
-$ make restore/"http://127.0.0.1:3000 ./backups/dir1/dash.json"
-$ make restorenew/"http://127.0.0.1:3000 ./backups/dir1/dash.json"
+$ make backup/"http://turtle-grafana.web.cern.ch turtle-cern"
+$ make restore/"http://127.0.0.1:3000 ./backups/mierecensioni/subdir/dash.json"
+$ make restorenew/"http://127.0.0.1:3000 ./backups/mierecensioni/subdir/dash.json"
 ```

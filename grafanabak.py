@@ -12,9 +12,10 @@ def cli():
 
 @click.command()
 @click.argument("url")
-def backup(url):
+@click.argument("project_name")
+def backup(url, project_name):
     api_key = get_api_key()
-    bak = Backup(api_key, url)
+    bak = Backup(api_key, url, project_name)
     bak.bak_all_dashboards()
 
 
