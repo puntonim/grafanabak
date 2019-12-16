@@ -4,20 +4,29 @@ import json
 
 import click
 import requests
-
-from .utils import slugify
+from slugify import slugify
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
-class Backup(object):
+class BaseClass:
+    def __init__(self, api_key):
+        self.session = requests.Session()
+        self.session.headers.update({"Authorization": "Bearer {}".format(api_key)})
+
+    def _get_org(self):
+        url = f"{self.base_url}/api/org/"
+        response = self.session.get(url)
+        response.raise_for_status()
+        return response.json()
+
+
+class Backup(BaseClass):
     def __init__(self, api_key, base_url, project_name):
         self.base_url = base_url
         self.project_name = project_name
-
-        self.session = requests.Session()
-        self.session.headers.update({"Authorization": "Bearer {}".format(api_key)})
+        super().__init__(api_key)
 
     def bak_all_dashboards(self):
         dashboards = self._search_all_dashboards()
@@ -38,37 +47,42 @@ class Backup(object):
         return response.json()
 
     def _write_dashboard_to_file(self, dashboard_source):
-        title_orig = dashboard_source["dashboard"]["title"]
-        title = slugify(title_orig)
+        title = dashboard_source["dashboard"]["title"]
         uid = dashboard_source["dashboard"]["uid"]
-        click.echo('Backing up "{}" - uid={}'.format(title_orig, uid))
+        click.echo('Backing up "{}" - uid={}'.format(title, uid))
+        subdir_path = self._create_subdir()
 
+        # Create the json file.
+        file_name = "{}|{}.json".format(slugify(title), slugify(uid))
+        file_path = os.path.join(subdir_path, file_name)
+        with open(file_path, "w") as fout:
+            fout.write(json.dumps(dashboard_source, indent=2))
+
+    def _create_subdir(self):
         # Create project dir, if necessary.
         project_dir_path = os.path.join(BASE_DIR, "backups", self.project_name)
         if not os.path.exists(project_dir_path):
             os.makedirs(project_dir_path)
         # Create (sub)dir, if necessary.
         today = datetime.date.today()
-        subdir_name = "{}-{}".format(
-            today.strftime("%Y-%m-%d"), self.base_url.split("://")[1].split("/")[0]
+        org = self._get_org()
+        subdir_name = "org-{}-{}|{}|{}".format(
+            org["id"],
+            slugify(org["name"]),
+            today.strftime("%Y-%m-%d"),
+            slugify(self.base_url.split("://")[1].split("/")[0]),
         )
         subdir_path = os.path.join(project_dir_path, subdir_name)
         if not os.path.exists(subdir_path):
             os.makedirs(subdir_path)
-        # Create the json file.
-        file_name = "{}-{}.json".format(title, uid)
-        file_path = os.path.join(subdir_path, file_name)
-        with open(file_path, "w") as fout:
-            fout.write(json.dumps(dashboard_source, indent=2))
+        return subdir_path
 
 
-class Restore(object):
+class Restore(BaseClass):
     def __init__(self, api_key, base_url, json_file_or_dir):
         self.base_url = base_url
         self.json_files = get_files(json_file_or_dir)
-
-        self.session = requests.Session()
-        self.session.headers.update({"Authorization": "Bearer {}".format(api_key)})
+        super().__init__(api_key)
 
     def restore_dashboard(self, as_new=False):
         for json_file in self.json_files:
