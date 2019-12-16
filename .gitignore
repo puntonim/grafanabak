@@ -251,4 +251,4 @@ pip-selfcheck.json
 
 # End of https://www.gitignore.io/api/code,macos,python,pycharm,virtualenv
 
-api-key
+api-keys.json

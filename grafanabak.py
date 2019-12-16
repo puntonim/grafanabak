@@ -1,4 +1,6 @@
+import json
 import os
+import sys
 
 import click
 
@@ -14,9 +16,10 @@ def cli():
 @click.argument("url")
 @click.argument("project_name")
 def backup(url, project_name):
-    api_key = get_api_key()
-    bak = Backup(api_key, url, project_name)
-    bak.bak_all_dashboards()
+    api_keys = get_api_keys()
+    for api_key in api_keys:
+        bak = Backup(api_key, url, project_name)
+        bak.bak_all_dashboards()
 
 
 @click.command()
@@ -40,17 +43,46 @@ def restore_as_new(url, json_file_or_dir):
 
 def get_api_key():
     # First get the API_KEY env var, if present.
-    api_key = os.environ.get("API_KEY")
-    # If not found, get the key from the file `api-key`.
+    api_key = os.environ.get("API_KEY", None)
+    if api_key:
+        return api_key
+
+    # If not found, get the key from `api-keys.json` with id=API_KEY_ID.
+    api_key_id = os.environ.get("API_KEY_ID", None)
+    if api_key_id is None:
+        click.echo("Error: either API_KEY or API_KEY_ID env vars are required")
+        sys.exit(1)
+    fpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "api-keys.json")
+    with open(fpath, "r") as fin:
+        data = fin.read()
+    data = json.loads(data)
+
+    api_key = None
+    for key in data:
+        if key["id"] == api_key_id:
+            api_key = key["key"]
     if not api_key:
-        fpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "api-key")
-        with open(fpath, "r") as fin:
-            api_key = fin.read()
-    if not api_key:
-        click.echo(
-            "Error: api key not found in `api-key` file nor API_KEY env var not available"
-        )
+        click.echo(f"Error: id {api_key_id} not found in api-keys.json")
+        sys.exit(1)
     return api_key
+
+
+def get_api_keys():
+    # First get the API_KEY env var, if present.
+    api_key = os.environ.get("API_KEY", None)
+    if api_key:
+        return [api_key]
+
+    # If not found, get the keys from `api-keys.json`.
+    fpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "api-keys.json")
+    with open(fpath, "r") as fin:
+        data = fin.read()
+    data = json.loads(data)
+
+    api_keys = []
+    for key in data:
+        api_keys.append(key["key"])
+    return api_keys
 
 
 cli.add_command(backup)

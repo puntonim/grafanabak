@@ -14,12 +14,19 @@ class BaseClass:
     def __init__(self, api_key):
         self.session = requests.Session()
         self.session.headers.update({"Authorization": "Bearer {}".format(api_key)})
+        self._org = None
 
     def _get_org(self):
         url = f"{self.base_url}/api/org/"
         response = self.session.get(url)
         response.raise_for_status()
         return response.json()
+
+    @property
+    def org(self):
+        if self._org is None:
+            self._org = self._get_org()
+        return self._org
 
 
 class Backup(BaseClass):
@@ -49,7 +56,11 @@ class Backup(BaseClass):
     def _write_dashboard_to_file(self, dashboard_source):
         title = dashboard_source["dashboard"]["title"]
         uid = dashboard_source["dashboard"]["uid"]
-        click.echo('Backing up "{}" - uid={}'.format(title, uid))
+        click.echo(
+            'Backing up "{}" - uid={} - org={}|{}'.format(
+                title, uid, self.org["id"], slugify(self.org["name"])
+            )
+        )
         subdir_path = self._create_subdir()
 
         # Create the json file.
@@ -65,10 +76,9 @@ class Backup(BaseClass):
             os.makedirs(project_dir_path)
         # Create (sub)dir, if necessary.
         today = datetime.date.today()
-        org = self._get_org()
         subdir_name = "org-{}-{}|{}|{}".format(
-            org["id"],
-            slugify(org["name"]),
+            self.org["id"],
+            slugify(self.org["name"]),
             today.strftime("%Y-%m-%d"),
             slugify(self.base_url.split("://")[1].split("/")[0]),
         )
@@ -86,7 +96,11 @@ class Restore(BaseClass):
 
     def restore_dashboard(self, as_new=False):
         for json_file in self.json_files:
-            click.echo("Restoring {}".format(json_file))
+            click.echo(
+                "Restoring {} - org={}|{}".format(
+                    json_file, self.org["id"], slugify(self.org["name"])
+                )
+            )
             with open(json_file) as fin:
                 file_data = fin.read()
             file_data = json.loads(file_data)

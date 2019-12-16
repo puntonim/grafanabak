@@ -1,12 +1,25 @@
 # Backup and restore Grafana dashboards
 
-## API Key
-You need to generate an API Key in Grafana and either:
-- store it in a file named `api-key`
-- use it as env var `API_KEY`, eg:
+## API Keys
+You need to generate one API key in Grafana for each Grafana organization and either:
+
+_For `backup` command_:
+- store all keys in a file named `api-keys.json` (see template `api-keys.json.TEMPLATE`)
+- or use one key as env var `API_KEY`, eg:
     ```bash
-    API_KEY=mykey python grafanabak.py ...
+    API_KEY=mykey python grafanabak.py backup...
     ```
+_For `backup` command_:
+- use one key as env var `API_KEY`, eg:
+    ```bash
+    API_KEY=mykey python grafanabak.py restore...
+    ```
+- store all keys in a file named `api-keys.json` (see template `api-keys.json.TEMPLATE`)
+and specify one, eg:
+    ```bash
+    API_KEY_ID=studio-bergamo-key python grafanabak.py restore...
+    ```
+
 
 ## Usage
 ```bash

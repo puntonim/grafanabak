@@ -1,0 +1,20 @@
+# This is a template. Ho wto use it:
+# - generate API keys in Grafana, one for each organization;
+# - copy this file to `api-keys.json`;
+# - remove the comments;
+# - edit the file adding your keys.
+
+# IMPORTANT: no comments are allowed in JSON files!
+
+[
+    {
+        "id": "studio-bergamo-key",
+        "key": "mykeyjhgJHGjhg76FGjhgjhgZmFuYjhgFjgsIm8hhyT==",
+        "description": "Key for the org studio-bergamo"
+    },
+    {
+        "id": "studio-singapore-key",
+        "key": "mykeyjhgJHGjhg76FGjhgjhgZmFuYjhgFjgsIm8hhyT==",
+        "description": "Key for the org studio-singapore"
+    }
+]
