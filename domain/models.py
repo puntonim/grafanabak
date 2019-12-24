@@ -127,7 +127,7 @@ def get_files(json_file_or_dir):
     result = []
     for f in os.listdir(json_file_or_dir):
         fpath = os.path.join(json_file_or_dir, f)
-        if os.path.isfile(fpath):
+        if os.path.isfile(fpath) and fpath.endswith("json"):
             result.append(fpath)
     return result
 
