@@ -5,14 +5,14 @@
     "canEdit": true,
     "canAdmin": true,
     "canStar": true,
-    "slug": "risposte-per-sezione-inizio",
-    "url": "/d/vACqxHfZz/risposte-per-sezione-inizio",
+    "slug": "risposte-per-sezione-fine",
+    "url": "/d/raVXA6BWk/risposte-per-sezione-fine",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2019-12-15T22:26:14Z",
-    "updated": "2019-12-15T22:27:22Z",
-    "updatedBy": "admin",
-    "createdBy": "admin",
-    "version": 2,
+    "created": "2019-12-24T20:11:47Z",
+    "updated": "2019-12-24T20:11:47Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -37,11 +37,144 @@
     },
     "editable": true,
     "gnetId": null,
-    "graphTooltip": 0,
-    "id": 14,
-    "iteration": 1576448774802,
+    "graphTooltip": 1,
+    "id": 45,
+    "iteration": 1576679953153,
     "links": [],
     "panels": [
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Negativo": "red",
+          "Non so": "rgb(188, 190, 191)",
+          "Positivo": "green",
+          "false": "red",
+          "true": "green",
+          "unknown": "rgb(181, 183, 184)"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 0,
+        "description": "Tutto 80% si",
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 15,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": true,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "",
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "value",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "offset": "",
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "select field",
+                "id": "1",
+                "type": "count"
+              }
+            ],
+            "query": "section:END AND tag_attribute:recommendation",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Attributo: raccomandazione",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": "#",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
       {
         "aliasColors": {
           "Count": "purple",
@@ -60,11 +193,11 @@
         "gridPos": {
           "h": 9,
           "w": 12,
-          "x": 0,
+          "x": 12,
           "y": 0
         },
         "hiddenSeries": false,
-        "id": 4,
+        "id": 17,
         "interval": "$GROUP_TIME_INTERVAL",
         "legend": {
           "avg": false,
@@ -96,18 +229,6 @@
             "alias": "",
             "bucketAggs": [
               {
-                "fake": true,
-                "field": "uuid",
-                "id": "3",
-                "settings": {
-                  "min_doc_count": 1,
-                  "order": "desc",
-                  "orderBy": "_term",
-                  "size": "10"
-                },
-                "type": "terms"
-              },
-              {
                 "field": "timestamp",
                 "id": "2",
                 "settings": {
@@ -125,7 +246,7 @@
                 "type": "count"
               }
             ],
-            "query": "section:START",
+            "query": "section:END AND uuid:END.comment",
             "refId": "A",
             "timeField": "timestamp"
           }
@@ -134,7 +255,7 @@
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Contatti",
+        "title": "Commento",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -192,7 +313,7 @@
           "name": "GROUP_TIME_INTERVAL",
           "options": [
             {
-              "selected": true,
+              "selected": false,
               "text": "1s",
               "value": "1s"
             },
@@ -212,7 +333,7 @@
               "value": "1d"
             },
             {
-              "selected": false,
+              "selected": true,
               "text": "7d",
               "value": "7d"
             },
@@ -253,8 +374,8 @@
       ]
     },
     "timezone": "",
-    "title": "Risposte per sezione: inizio",
-    "uid": "vACqxHfZz",
-    "version": 2
+    "title": "Risposte per sezione: fine",
+    "uid": "raVXA6BWk",
+    "version": 1
   }
 }

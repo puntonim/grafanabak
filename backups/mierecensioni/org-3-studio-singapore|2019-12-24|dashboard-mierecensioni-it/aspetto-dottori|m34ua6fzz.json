@@ -5,14 +5,14 @@
     "canEdit": true,
     "canAdmin": true,
     "canStar": true,
-    "slug": "aspetto-struttura",
-    "url": "/d/O7blxNfZz/aspetto-struttura",
+    "slug": "aspetto-dottori",
+    "url": "/d/M34uA6fZz/aspetto-dottori",
     "expires": "0001-01-01T00:00:00Z",
-    "created": "2019-12-15T22:23:51Z",
-    "updated": "2019-12-16T14:07:50Z",
+    "created": "2019-12-24T20:11:48Z",
+    "updated": "2019-12-24T20:11:48Z",
     "updatedBy": "Anonymous",
-    "createdBy": "admin",
-    "version": 4,
+    "createdBy": "Anonymous",
+    "version": 1,
     "hasAcl": false,
     "isFolder": false,
     "folderId": 0,
@@ -37,9 +37,9 @@
     },
     "editable": true,
     "gnetId": null,
-    "graphTooltip": 0,
-    "id": 13,
-    "iteration": 1576448845630,
+    "graphTooltip": 1,
+    "id": 47,
+    "iteration": 1576436911630,
     "links": [],
     "panels": [
       {
@@ -84,7 +84,7 @@
         },
         "percentage": true,
         "pointradius": 2,
-        "points": false,
+        "points": true,
         "renderer": "flot",
         "seriesOverrides": [],
         "spaceLength": 10,
@@ -110,7 +110,7 @@
                 "field": "timestamp",
                 "id": "2",
                 "settings": {
-                  "interval": "$GROUP_TIME_INTERVAL",
+                  "interval": "auto",
                   "min_doc_count": 1,
                   "trimEdges": 0
                 },
@@ -124,7 +124,7 @@
                 "type": "count"
               }
             ],
-            "query": "tag_topic:facility  AND NOT (section:FACILITY AND value:false)",
+            "query": "tag_topic:doctors",
             "refId": "A",
             "timeField": "timestamp"
           }
@@ -182,7 +182,7 @@
         "dashes": false,
         "datasource": "Answers",
         "decimals": 1,
-        "description": "Seconda met\u00e0: trend pos ~90%",
+        "description": "",
         "fill": 4,
         "fillGradient": 0,
         "gridPos": {
@@ -192,9 +192,10 @@
           "y": 0
         },
         "hiddenSeries": false,
-        "id": 10,
+        "id": 4,
         "interval": "$GROUP_TIME_INTERVAL",
         "legend": {
+          "alignAsTable": true,
           "avg": true,
           "current": true,
           "hideEmpty": false,
@@ -202,6 +203,8 @@
           "max": false,
           "min": false,
           "show": true,
+          "sort": "avg",
+          "sortDesc": true,
           "total": false,
           "values": true
         },
@@ -213,7 +216,7 @@
         },
         "percentage": true,
         "pointradius": 2,
-        "points": false,
+        "points": true,
         "renderer": "flot",
         "seriesOverrides": [],
         "spaceLength": 10,
@@ -221,15 +224,26 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "Media",
+            "alias": "{{term tag_doctor_name}}",
             "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_doctor_name",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "0"
+                },
+                "type": "terms"
+              },
               {
                 "field": "timestamp",
                 "id": "2",
                 "settings": {
                   "interval": "$GROUP_TIME_INTERVAL",
                   "min_doc_count": 1,
-                  "offset": "",
                   "trimEdges": 0
                 },
                 "type": "date_histogram"
@@ -239,13 +253,12 @@
               {
                 "field": "value.short",
                 "id": "1",
-                "inlineScript": null,
                 "meta": {},
                 "settings": {},
                 "type": "avg"
               }
             ],
-            "query": "tag_topic:facility AND tag_attribute:overall",
+            "query": "tag_topic:doctors",
             "refId": "A",
             "timeField": "timestamp"
           }
@@ -254,7 +267,7 @@
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Voto complessivo",
+        "title": "Tutti gli attributi",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -279,7 +292,6 @@
             "show": true
           },
           {
-            "decimals": null,
             "format": "short",
             "label": null,
             "logBase": 1,
@@ -297,16 +309,13 @@
         "aliasColors": {
           "Count": "red",
           "Negativo": "red",
-          "Positivo": "green",
-          "Positivo FACILITY": "green",
-          "negative": "red"
+          "Positivo": "green"
         },
         "bars": false,
         "dashLength": 10,
         "dashes": false,
         "datasource": "Answers",
         "decimals": 0,
-        "description": "Prima met\u00e0: trend pos 80% - Seconda met\u00e0: trend neg 80%",
         "fill": 4,
         "fillGradient": 0,
         "gridPos": {
@@ -316,7 +325,7 @@
           "y": 9
         },
         "hiddenSeries": false,
-        "id": 4,
+        "id": 10,
         "interval": "$GROUP_TIME_INTERVAL",
         "legend": {
           "avg": false,
@@ -337,7 +346,7 @@
         },
         "percentage": true,
         "pointradius": 2,
-        "points": false,
+        "points": true,
         "renderer": "flot",
         "seriesOverrides": [],
         "spaceLength": 10,
@@ -349,142 +358,13 @@
             "bucketAggs": [
               {
                 "fake": true,
-                "field": "tag_sentiment",
+                "field": "tag_doctor_name",
                 "id": "3",
                 "settings": {
                   "min_doc_count": 1,
                   "order": "desc",
                   "orderBy": "_term",
-                  "size": "10"
-                },
-                "type": "terms"
-              },
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "$GROUP_TIME_INTERVAL",
-                  "min_doc_count": 1,
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:facility AND tag_attribute:cleanliness AND NOT (section:FACILITY AND value:false)",
-            "refId": "A",
-            "timeField": "timestamp"
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "Attributo: pulizia",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "short",
-            "label": "#",
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          },
-          {
-            "format": "short",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "aliasColors": {
-          "Count": "red",
-          "Negativo": "red",
-          "Positivo": "green",
-          "negative": "red"
-        },
-        "bars": true,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "Answers",
-        "decimals": 0,
-        "description": "Prima met\u00e0: trend neg 80% - Seconda met\u00e0: trend pos 80%",
-        "fill": 1,
-        "fillGradient": 1,
-        "gridPos": {
-          "h": 9,
-          "w": 12,
-          "x": 12,
-          "y": 9
-        },
-        "hiddenSeries": false,
-        "id": 6,
-        "interval": "$GROUP_TIME_INTERVAL",
-        "legend": {
-          "avg": false,
-          "current": false,
-          "hideEmpty": false,
-          "hideZero": false,
-          "max": false,
-          "min": false,
-          "show": true,
-          "total": true,
-          "values": true
-        },
-        "lines": false,
-        "linewidth": 3,
-        "nullPointMode": "null",
-        "options": {
-          "dataLinks": []
-        },
-        "percentage": true,
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "",
-            "bucketAggs": [
-              {
-                "fake": true,
-                "field": "tag_sentiment",
-                "id": "3",
-                "settings": {
-                  "min_doc_count": 1,
-                  "order": "desc",
-                  "orderBy": "_term",
-                  "size": "10"
+                  "size": "0"
                 },
                 "type": "terms"
               },
@@ -501,14 +381,12 @@
             ],
             "metrics": [
               {
-                "field": "uuid.keyword",
+                "field": "select field",
                 "id": "1",
-                "meta": {},
-                "settings": {},
                 "type": "count"
               }
             ],
-            "query": "tag_topic:facility AND tag_attribute:equipment AND NOT (section:FACILITY AND value:false)",
+            "query": "tag_topic:doctors AND tag_sentiment:positive",
             "refId": "A",
             "timeField": "timestamp"
           }
@@ -517,7 +395,7 @@
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Attributo: attrezzatura",
+        "title": "Sentiment positivo per dottore",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -557,423 +435,6 @@
       {
         "aliasColors": {
           "Count": "red",
-          "Negativo": "red",
-          "Positivo": "green",
-          "negative": "red"
-        },
-        "bars": true,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "Answers",
-        "decimals": 0,
-        "description": "Tutto: trend pos 66%",
-        "fill": 1,
-        "fillGradient": 1,
-        "gridPos": {
-          "h": 9,
-          "w": 12,
-          "x": 0,
-          "y": 18
-        },
-        "hiddenSeries": false,
-        "id": 7,
-        "interval": "$GROUP_TIME_INTERVAL",
-        "legend": {
-          "avg": false,
-          "current": false,
-          "hideEmpty": false,
-          "hideZero": false,
-          "max": false,
-          "min": false,
-          "show": true,
-          "total": true,
-          "values": true
-        },
-        "lines": false,
-        "linewidth": 3,
-        "nullPointMode": "null",
-        "options": {
-          "dataLinks": []
-        },
-        "percentage": true,
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "",
-            "bucketAggs": [
-              {
-                "fake": true,
-                "field": "tag_sentiment",
-                "id": "3",
-                "settings": {
-                  "min_doc_count": 1,
-                  "order": "desc",
-                  "orderBy": "_term",
-                  "size": "10"
-                },
-                "type": "terms"
-              },
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "$GROUP_TIME_INTERVAL",
-                  "min_doc_count": 1,
-                  "offset": "",
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:facility AND tag_attribute:temperature AND NOT (section:FACILITY AND value:false)",
-            "refId": "A",
-            "timeField": "timestamp"
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "Attributo: temperatura",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "short",
-            "label": "#",
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          },
-          {
-            "format": "short",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "aliasColors": {
-          "Count": "red",
-          "Negativo": "red",
-          "Positivo": "green",
-          "negative": "red"
-        },
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "Answers",
-        "decimals": 0,
-        "description": "Prima met\u00e0: trend pos 66% - Seconda met\u00e0: trend neg 80%",
-        "fill": 4,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 9,
-          "w": 12,
-          "x": 12,
-          "y": 18
-        },
-        "hiddenSeries": false,
-        "id": 8,
-        "interval": "$GROUP_TIME_INTERVAL",
-        "legend": {
-          "avg": false,
-          "current": false,
-          "hideEmpty": false,
-          "hideZero": false,
-          "max": false,
-          "min": false,
-          "show": true,
-          "total": true,
-          "values": true
-        },
-        "lines": true,
-        "linewidth": 2,
-        "nullPointMode": "null",
-        "options": {
-          "dataLinks": []
-        },
-        "percentage": true,
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "",
-            "bucketAggs": [
-              {
-                "fake": true,
-                "field": "tag_sentiment",
-                "id": "3",
-                "settings": {
-                  "min_doc_count": 1,
-                  "order": "desc",
-                  "orderBy": "_term",
-                  "size": "10"
-                },
-                "type": "terms"
-              },
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "$GROUP_TIME_INTERVAL",
-                  "min_doc_count": 1,
-                  "offset": "",
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:facility AND tag_attribute:planning AND NOT (section:FACILITY AND value:false)",
-            "refId": "A",
-            "timeField": "timestamp"
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "Attributo: organizzazione",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "short",
-            "label": "#",
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          },
-          {
-            "format": "short",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "aliasColors": {
-          "Count": "red",
-          "Negativo": "red",
-          "Non so": "rgb(188, 190, 191)",
-          "Positivo": "green",
-          "negative": "red"
-        },
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "Answers",
-        "decimals": 0,
-        "description": "Tutto: trend pos 66%",
-        "fill": 4,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 9,
-          "w": 12,
-          "x": 0,
-          "y": 27
-        },
-        "hiddenSeries": false,
-        "id": 9,
-        "interval": "$GROUP_TIME_INTERVAL",
-        "legend": {
-          "avg": false,
-          "current": false,
-          "hideEmpty": false,
-          "hideZero": false,
-          "max": false,
-          "min": false,
-          "show": true,
-          "total": true,
-          "values": true
-        },
-        "lines": true,
-        "linewidth": 2,
-        "nullPointMode": "null",
-        "options": {
-          "dataLinks": []
-        },
-        "percentage": true,
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "",
-            "bucketAggs": [
-              {
-                "fake": true,
-                "field": "tag_sentiment",
-                "id": "3",
-                "settings": {
-                  "min_doc_count": 1,
-                  "order": "desc",
-                  "orderBy": "_term",
-                  "size": "10"
-                },
-                "type": "terms"
-              },
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "$GROUP_TIME_INTERVAL",
-                  "min_doc_count": 1,
-                  "offset": "",
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:facility AND tag_attribute:parking AND NOT (section:FACILITY AND value:false)",
-            "refId": "A",
-            "timeField": "timestamp"
-          },
-          {
-            "alias": "Non so",
-            "bucketAggs": [
-              {
-                "field": "timestamp",
-                "id": "2",
-                "settings": {
-                  "interval": "$GROUP_TIME_INTERVAL",
-                  "min_doc_count": 1,
-                  "trimEdges": 0
-                },
-                "type": "date_histogram"
-              }
-            ],
-            "metrics": [
-              {
-                "field": "select field",
-                "id": "1",
-                "type": "count"
-              }
-            ],
-            "query": "tag_topic:facility AND value:unknown AND tag_attribute:parking AND NOT (section:FACILITY AND value:false)",
-            "refId": "C",
-            "timeField": "timestamp"
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "Attributo: parcheggio",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "short",
-            "label": "#",
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          },
-          {
-            "format": "short",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "aliasColors": {
-          "Count": "red",
-          "Media": "purple",
           "Negativo": "red",
           "Positivo": "green"
         },
@@ -981,26 +442,156 @@
         "dashLength": 10,
         "dashes": false,
         "datasource": "Answers",
-        "decimals": 1,
-        "description": "",
+        "decimals": 0,
         "fill": 4,
         "fillGradient": 0,
         "gridPos": {
           "h": 9,
           "w": 12,
           "x": 12,
-          "y": 27
+          "y": 9
         },
         "hiddenSeries": false,
         "id": 11,
         "interval": "$GROUP_TIME_INTERVAL",
         "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": true,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "",
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_doctor_name",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "0"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "select field",
+                "id": "1",
+                "type": "count"
+              }
+            ],
+            "query": "tag_topic:doctors AND tag_sentiment:negative",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Sentiment negativo per dottore",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": "#",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Media": "purple",
+          "Negativo": "red",
+          "Positivo": "green"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 1,
+        "description": "",
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 18
+        },
+        "hiddenSeries": false,
+        "id": 9,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "alignAsTable": false,
           "avg": true,
           "current": true,
           "hideEmpty": false,
           "hideZero": false,
           "max": false,
           "min": false,
+          "rightSide": false,
           "show": true,
           "total": false,
           "values": true
@@ -1013,7 +604,7 @@
         },
         "percentage": true,
         "pointradius": 2,
-        "points": false,
+        "points": true,
         "renderer": "flot",
         "seriesOverrides": [],
         "spaceLength": 10,
@@ -1021,15 +612,26 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "Media",
+            "alias": "{{term tag_doctor_name}}",
             "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_doctor_name",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "0"
+                },
+                "type": "terms"
+              },
               {
                 "field": "timestamp",
                 "id": "2",
                 "settings": {
                   "interval": "$GROUP_TIME_INTERVAL",
                   "min_doc_count": 1,
-                  "offset": "",
                   "trimEdges": 0
                 },
                 "type": "date_histogram"
@@ -1044,7 +646,7 @@
                 "type": "avg"
               }
             ],
-            "query": "tag_topic:facility AND tag_attribute:comfort",
+            "query": "tag_topic:doctors AND tag_attribute:courtesy",
             "refId": "A",
             "timeField": "timestamp"
           }
@@ -1053,7 +655,7 @@
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Attributo: comfort",
+        "title": "Attributo: cortesia",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -1109,11 +711,11 @@
         "gridPos": {
           "h": 9,
           "w": 12,
-          "x": 0,
-          "y": 36
+          "x": 12,
+          "y": 18
         },
         "hiddenSeries": false,
-        "id": 12,
+        "id": 6,
         "interval": "$GROUP_TIME_INTERVAL",
         "legend": {
           "avg": true,
@@ -1134,7 +736,7 @@
         },
         "percentage": true,
         "pointradius": 2,
-        "points": false,
+        "points": true,
         "renderer": "flot",
         "seriesOverrides": [],
         "spaceLength": 10,
@@ -1142,15 +744,26 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "Media",
+            "alias": "{{term tag_doctor_name}}",
             "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_doctor_name",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "0"
+                },
+                "type": "terms"
+              },
               {
                 "field": "timestamp",
                 "id": "2",
                 "settings": {
                   "interval": "$GROUP_TIME_INTERVAL",
                   "min_doc_count": 1,
-                  "offset": "",
                   "trimEdges": 0
                 },
                 "type": "date_histogram"
@@ -1165,7 +778,7 @@
                 "type": "avg"
               }
             ],
-            "query": "tag_topic:facility AND tag_attribute:location",
+            "query": "tag_topic:doctors AND tag_attribute:listening",
             "refId": "A",
             "timeField": "timestamp"
           }
@@ -1174,7 +787,7 @@
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Attributo: location",
+        "title": "Attributo: ascolto",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -1215,36 +828,36 @@
       {
         "aliasColors": {
           "Count": "red",
+          "Media": "purple",
           "Negativo": "red",
-          "Positivo": "green",
-          "negative": "red"
+          "Positivo": "green"
         },
         "bars": false,
         "dashLength": 10,
         "dashes": false,
         "datasource": "Answers",
-        "decimals": 0,
-        "description": "",
+        "decimals": 1,
+        "description": "Prima met\u00e0: trend pos x Paperino ~90%",
         "fill": 4,
         "fillGradient": 0,
         "gridPos": {
           "h": 9,
           "w": 12,
-          "x": 12,
-          "y": 36
+          "x": 0,
+          "y": 27
         },
         "hiddenSeries": false,
-        "id": 13,
+        "id": 7,
         "interval": "$GROUP_TIME_INTERVAL",
         "legend": {
-          "avg": false,
-          "current": false,
+          "avg": true,
+          "current": true,
           "hideEmpty": false,
           "hideZero": false,
           "max": false,
           "min": false,
           "show": true,
-          "total": true,
+          "total": false,
           "values": true
         },
         "lines": true,
@@ -1255,7 +868,7 @@
         },
         "percentage": true,
         "pointradius": 2,
-        "points": false,
+        "points": true,
         "renderer": "flot",
         "seriesOverrides": [],
         "spaceLength": 10,
@@ -1263,17 +876,17 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "",
+            "alias": "{{term tag_doctor_name}}",
             "bucketAggs": [
               {
                 "fake": true,
-                "field": "tag_sentiment",
+                "field": "tag_doctor_name",
                 "id": "3",
                 "settings": {
                   "min_doc_count": 1,
                   "order": "desc",
                   "orderBy": "_term",
-                  "size": "10"
+                  "size": "0"
                 },
                 "type": "terms"
               },
@@ -1283,7 +896,6 @@
                 "settings": {
                   "interval": "$GROUP_TIME_INTERVAL",
                   "min_doc_count": 1,
-                  "offset": "",
                   "trimEdges": 0
                 },
                 "type": "date_histogram"
@@ -1291,12 +903,14 @@
             ],
             "metrics": [
               {
-                "field": "select field",
+                "field": "value.short",
                 "id": "1",
-                "type": "count"
+                "meta": {},
+                "settings": {},
+                "type": "avg"
               }
             ],
-            "query": "tag_topic:facility AND tag_attribute:noise AND NOT (section:FACILITY AND value:false)",
+            "query": "tag_topic:doctors AND tag_attribute:communication",
             "refId": "A",
             "timeField": "timestamp"
           }
@@ -1305,7 +919,7 @@
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Attributo: rumoroso",
+        "title": "Attributo: comunicazione",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -1321,11 +935,144 @@
         },
         "yaxes": [
           {
+            "decimals": 0,
             "format": "short",
-            "label": "#",
+            "label": "voto",
+            "logBase": 1,
+            "max": "5",
+            "min": "1",
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
             "logBase": 1,
             "max": null,
             "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Media": "purple",
+          "Negativo": "red",
+          "Positivo": "green"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 1,
+        "description": "Prima met\u00e0: trend neg per Pluto ~90% - Seconda met\u00e0: trend pos per Pluto ~90%",
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 27
+        },
+        "hiddenSeries": false,
+        "id": 8,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": true,
+          "current": true,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "{{term tag_doctor_name}}",
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "tag_doctor_name",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "0"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "$GROUP_TIME_INTERVAL",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "value.short",
+                "id": "1",
+                "meta": {},
+                "settings": {},
+                "type": "avg"
+              }
+            ],
+            "query": "tag_topic:doctors AND tag_attribute:effectiveness",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Attributo: efficacia",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "decimals": 0,
+            "format": "short",
+            "label": "voto",
+            "logBase": 1,
+            "max": "5",
+            "min": "1",
             "show": true
           },
           {
@@ -1424,8 +1171,8 @@
       ]
     },
     "timezone": "",
-    "title": "Aspetto: struttura",
-    "uid": "O7blxNfZz",
-    "version": 4
+    "title": "Aspetto: dottori",
+    "uid": "M34uA6fZz",
+    "version": 1
   }
 }
