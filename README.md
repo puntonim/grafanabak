@@ -9,12 +9,12 @@ _For `backup` command_:
     ```bash
     API_KEY=mykey python grafanabak.py backup...
     ```
-_For `backup` command_:
+_For `restore` command_:
 - use one key as env var `API_KEY`, eg:
     ```bash
     API_KEY=mykey python grafanabak.py restore...
     ```
-- store all keys in a file named `api-keys.json` (see template `api-keys.json.TEMPLATE`)
+- or store all keys in a file named `api-keys.json` (see template `api-keys.json.TEMPLATE`)
 and specify one, eg:
     ```bash
     API_KEY_ID=studio-bergamo-key python grafanabak.py restore...
@@ -43,7 +43,7 @@ $ python grafanabak.py restore-as-new http://127.0.0.1:3000 ./backups/mierecensi
 ## Makefile
 You can use Makefile shortcuts:
 ```bash
-$ make backup/"http://turtle-grafana.web.cern.ch turtle-cern"
+$ make backup/"http://dashboard.mierecensioni.it mierecensioni"
 $ make restore/"http://127.0.0.1:3000 ./backups/mierecensioni/subdir/dash.json"
 $ make restorenew/"http://127.0.0.1:3000 ./backups/mierecensioni/subdir/dash.json"
 ```

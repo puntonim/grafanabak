@@ -6,13 +6,13 @@ DEPS:=requirements.txt
 VIRTUALENV=$(shell which virtualenv)
 PIP:="venv/bin/pip"
 CMD_FROM_VENV:=". venv/bin/activate; which"
-PYTHON=$(shell "$(CMD_FROM_VENV)" "python2.7")
+PYTHON=$(shell "$(CMD_FROM_VENV)" "python3")
 
 .PHONY: venv backup restore requirements pyclean clean pipclean
 
 
 venv:
-	$(VIRTUALENV) -p $(shell which python2.7) venv
+	$(VIRTUALENV) -p $(shell which python3) venv
 	. venv/bin/activate
 	$(PIP) install -U "pip>=18.0" -q
 	$(PIP) install -U -r $(DEPS)
