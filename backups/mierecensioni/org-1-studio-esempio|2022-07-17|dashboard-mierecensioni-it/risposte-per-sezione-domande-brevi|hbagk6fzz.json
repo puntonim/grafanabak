@@ -1,0 +1,1383 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "risposte-per-sezione-domande-brevi",
+    "url": "/d/hbAGK6fZz/risposte-per-sezione-domande-brevi",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2019-12-24T18:32:01Z",
+    "updated": "2020-11-18T07:46:48Z",
+    "updatedBy": "admin",
+    "createdBy": "Anonymous",
+    "version": 3,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 1,
+    "id": 9,
+    "iteration": 1605685590342,
+    "links": [],
+    "panels": [
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Media": "purple",
+          "Negativo": "red",
+          "Positivo": "green"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 1,
+        "description": "",
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 9,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": true,
+          "current": true,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Media",
+            "bucketAggs": [
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "$GROUP_TIME_INTERVAL",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "value.short",
+                "id": "1",
+                "meta": {},
+                "settings": {},
+                "type": "avg"
+              }
+            ],
+            "query": "section:RANDOM AND uuid:rqgvyba",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Quanti assistenti alla poltrona hai visto nello studio?",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "decimals": 0,
+            "format": "short",
+            "label": "1- o 2 o 3+",
+            "logBase": 1,
+            "max": "3",
+            "min": "1",
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Media": "purple",
+          "Negativo": "red",
+          "Positivo": "green"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 1,
+        "description": "",
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 6,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": true,
+          "current": true,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Media",
+            "bucketAggs": [
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "$GROUP_TIME_INTERVAL",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "value.short",
+                "id": "1",
+                "meta": {},
+                "settings": {},
+                "type": "avg"
+              }
+            ],
+            "query": "section:RANDOM AND uuid:rqtjikb",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Lo studio \u00e8 confortevole?",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "decimals": 0,
+            "format": "short",
+            "label": "voto",
+            "logBase": 1,
+            "max": "5",
+            "min": "1",
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Negativo": "red",
+          "Non so": "rgb(188, 190, 191)",
+          "Positivo": "green",
+          "false": "red",
+          "true": "green",
+          "unknown": "rgb(181, 183, 184)"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 0,
+        "description": "",
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 9
+        },
+        "hiddenSeries": false,
+        "id": 11,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": true,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "",
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "value",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "offset": "",
+                  "trimEdges": null
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "select field",
+                "id": "1",
+                "type": "count"
+              }
+            ],
+            "query": "section:RANDOM AND uuid:rq1b3lc",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Accetta pagamenti rateizzati?",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": "#",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Media": "purple",
+          "Negativo": "red",
+          "Positivo": "green"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 1,
+        "description": "",
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 9
+        },
+        "hiddenSeries": false,
+        "id": 12,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": true,
+          "current": true,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Media",
+            "bucketAggs": [
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "$GROUP_TIME_INTERVAL",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "value.short",
+                "id": "1",
+                "meta": {},
+                "settings": {},
+                "type": "avg"
+              }
+            ],
+            "query": "section:RANDOM AND uuid:rq8k21d",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Quante settimane devi attendere per un appuntamento?",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "decimals": 0,
+            "format": "short",
+            "label": "1- o 2 o 3+",
+            "logBase": 1,
+            "max": "3",
+            "min": "1",
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Media": "purple",
+          "Negativo": "red",
+          "Positivo": "green"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 1,
+        "description": "",
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 18
+        },
+        "hiddenSeries": false,
+        "id": 13,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": true,
+          "current": true,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Media",
+            "bucketAggs": [
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "$GROUP_TIME_INTERVAL",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "value.short",
+                "id": "1",
+                "meta": {},
+                "settings": {},
+                "type": "avg"
+              }
+            ],
+            "query": "section:RANDOM AND uuid:rqd3sne",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Gli ambulatori sono puliti?",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "decimals": 0,
+            "format": "short",
+            "label": "voto",
+            "logBase": 1,
+            "max": "5",
+            "min": "1",
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Negativo": "red",
+          "Non so": "rgb(188, 190, 191)",
+          "Positivo": "green",
+          "false": "red",
+          "true": "green",
+          "unknown": "rgb(181, 183, 184)"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 0,
+        "description": "",
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 18
+        },
+        "hiddenSeries": false,
+        "id": 14,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": true,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "",
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "value",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "offset": "",
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "select field",
+                "id": "1",
+                "type": "count"
+              }
+            ],
+            "query": "section:RANDOM AND uuid:rquaqkf",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "C'\u00e8 parcheggio libero nelle vicinanze?",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": "#",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Negativo": "red",
+          "Non so": "rgb(188, 190, 191)",
+          "Positivo": "green",
+          "false": "red",
+          "true": "green",
+          "unknown": "rgb(181, 183, 184)"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 0,
+        "description": "",
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 27
+        },
+        "hiddenSeries": false,
+        "id": 15,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": true,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "",
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "value",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "offset": "",
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "select field",
+                "id": "1",
+                "type": "count"
+              }
+            ],
+            "query": "section:RANDOM AND uuid:rqi8jbg",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "\u00c8 presente una segretaria?",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": "#",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Media": "purple",
+          "Negativo": "red",
+          "Positivo": "green"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 1,
+        "description": "",
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 27
+        },
+        "hiddenSeries": false,
+        "id": 16,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": true,
+          "current": true,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Media",
+            "bucketAggs": [
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "$GROUP_TIME_INTERVAL",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "value.short",
+                "id": "1",
+                "meta": {},
+                "settings": {},
+                "type": "avg"
+              }
+            ],
+            "query": "section:RANDOM AND uuid:rq6lg3h",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "I servizi igienici sono puliti?",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "decimals": 0,
+            "format": "short",
+            "label": "voto",
+            "logBase": 1,
+            "max": "5",
+            "min": "1",
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Media": "purple",
+          "Negativo": "red",
+          "Positivo": "green"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 1,
+        "description": "",
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 36
+        },
+        "hiddenSeries": false,
+        "id": 17,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": true,
+          "current": true,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Media",
+            "bucketAggs": [
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "$GROUP_TIME_INTERVAL",
+                  "min_doc_count": 1,
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "value.short",
+                "id": "1",
+                "meta": {},
+                "settings": {},
+                "type": "avg"
+              }
+            ],
+            "query": "section:RANDOM AND uuid:rqo2oci",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Lo studio \u00e8 facilmente raggiungibile?",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "decimals": 0,
+            "format": "short",
+            "label": "voto",
+            "logBase": 1,
+            "max": "5",
+            "min": "1",
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {
+          "Count": "red",
+          "Negativo": "red",
+          "Non so": "rgb(188, 190, 191)",
+          "Positivo": "green",
+          "false": "red",
+          "true": "green",
+          "unknown": "rgb(181, 183, 184)"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Answers",
+        "decimals": 0,
+        "description": "",
+        "fill": 4,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 36
+        },
+        "hiddenSeries": false,
+        "id": 18,
+        "interval": "$GROUP_TIME_INTERVAL",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": true,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": true,
+        "pointradius": 2,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "",
+            "bucketAggs": [
+              {
+                "fake": true,
+                "field": "value",
+                "id": "3",
+                "settings": {
+                  "min_doc_count": 1,
+                  "order": "desc",
+                  "orderBy": "_term",
+                  "size": "10"
+                },
+                "type": "terms"
+              },
+              {
+                "field": "timestamp",
+                "id": "2",
+                "settings": {
+                  "interval": "auto",
+                  "min_doc_count": 1,
+                  "offset": "",
+                  "trimEdges": 0
+                },
+                "type": "date_histogram"
+              }
+            ],
+            "metrics": [
+              {
+                "field": "select field",
+                "id": "1",
+                "type": "count"
+              }
+            ],
+            "query": "section:RANDOM AND uuid:rqiyoxl",
+            "refId": "A",
+            "timeField": "timestamp"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Gli ambulatori sono troppo rumorosi?",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": "#",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 21,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "auto": false,
+          "auto_count": 30,
+          "auto_min": "10s",
+          "current": {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          "hide": 0,
+          "label": "Raggruppa per",
+          "name": "GROUP_TIME_INTERVAL",
+          "options": [
+            {
+              "selected": false,
+              "text": "1s",
+              "value": "1s"
+            },
+            {
+              "selected": false,
+              "text": "1m",
+              "value": "1m"
+            },
+            {
+              "selected": false,
+              "text": "1h",
+              "value": "1h"
+            },
+            {
+              "selected": false,
+              "text": "1d",
+              "value": "1d"
+            },
+            {
+              "selected": true,
+              "text": "7d",
+              "value": "7d"
+            },
+            {
+              "selected": false,
+              "text": "14d",
+              "value": "14d"
+            },
+            {
+              "selected": false,
+              "text": "30d",
+              "value": "30d"
+            }
+          ],
+          "query": "1s,1m,1h,1d,7d,14d,30d",
+          "refresh": 2,
+          "skipUrlSync": false,
+          "type": "interval"
+        }
+      ]
+    },
+    "time": {
+      "from": "2019-12-31T22:02:09.433Z",
+      "to": "2020-01-30T16:42:16.497Z"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
+    "timezone": "",
+    "title": "Risposte per sezione: domande brevi",
+    "uid": "hbAGK6fZz",
+    "version": 3
+  }
+}
